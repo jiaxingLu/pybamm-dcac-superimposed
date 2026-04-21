@@ -1,0 +1,33 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# macOS
+.DS_Store
+
+# Project-specific: outputs
+outputs/
+figures/cache/
+
+# Secrets
+.env
