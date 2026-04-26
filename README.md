@@ -75,7 +75,25 @@ The 30-case results JSON (~10 MB) is gitignored; regenerate by running notebook 
 ---
 
 ## Repository structure
-. ├── notebooks/ │ ├── 01_hello_pybamm.ipynb # Environment validation, 1C discharge baseline │ ├── 02_dcac_first_injection.ipynb # First DC-AC waveform via Interpolant │ ├── 03_dc_baseline_0.9C.ipynb # End-to-end 5-phase protocol (DC baseline) │ ├── 04_dcac_single_case.ipynb # Representative case 0.3C+0.7C @ 10τ │ ├── 05_batch_scan.ipynb # 30-case sweep + run_single_case() function │ └── 06_validation_figures.ipynb # Δt(Q*), T_max, CC time validation ├── figures/ # 6 figures (Days 4-5 + Day 7) ├── data/ │ ├── figure1_master_table_cleaned.csv # Experimental ground truth (30 cases) │ └── results_day6_summary.csv # Sim summary (full results JSON gitignored) ├── scripts/ │ └── add_cc_cv_columns.py # Reproducible CSV augmentation ├── ROADMAP.md ├── requirements.txt └── README.md
+```
+.
+├── notebooks/
+│   ├── 01_hello_pybamm.ipynb           # Environment validation, 1C discharge baseline
+│   ├── 02_dcac_first_injection.ipynb   # First DC-AC waveform via Interpolant
+│   ├── 03_dc_baseline_0.9C.ipynb       # End-to-end 5-phase protocol (DC baseline)
+│   ├── 04_dcac_single_case.ipynb       # Representative case 0.3C+0.7C @ 10τ
+│   ├── 05_batch_scan.ipynb             # 30-case sweep + run_single_case() function
+│   └── 06_validation_figures.ipynb     # Δt(Q*), T_max, CC time validation
+├── figures/                             # 6 figures (Days 4-5 + Day 7)
+├── data/
+│   ├── figure1_master_table_cleaned.csv  # Experimental ground truth (30 cases)
+│   └── results_day6_summary.csv          # Sim summary (full results JSON gitignored)
+├── scripts/
+│   └── add_cc_cv_columns.py              # Reproducible CSV augmentation
+├── ROADMAP.md
+├── requirements.txt
+└── README.md
+```
 
 
 ---
