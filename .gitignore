@@ -38,3 +38,4 @@ data/results_*.json
 # But keep lightweight summary CSVs and the master table
 !data/results_*_summary.csv
 !data/figure1_master_table_cleaned.csv
+ROADMAP.md.v0.1_backup
