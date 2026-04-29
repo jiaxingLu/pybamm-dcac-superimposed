@@ -39,3 +39,7 @@ data/results_*.json
 !data/results_*_summary.csv
 !data/figure1_master_table_cleaned.csv
 ROADMAP.md.v0.1_backup
+
+# X5.5 audit local results (conclusions documented in handoff and notebook 13)
+notebooks/X5p5_audit_results/
+notebooks/X5p5_audit_results_row8/
