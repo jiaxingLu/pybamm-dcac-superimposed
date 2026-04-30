@@ -43,3 +43,9 @@ ROADMAP.md.v0.1_backup
 # X5.5 audit local results (conclusions documented in handoff and notebook 13)
 notebooks/X5p5_audit_results/
 notebooks/X5p5_audit_results_row8/
+
+# Day 12 OCP modification iteration figures (intermediate dev artifacts; final = v4)
+figures/day12_ne_ocp_modifications_visual.png
+figures/day12_ocp_modifications_v2.png
+figures/day12_ocp_modifications_v3.png
+figures/day12_ocp_modifications_v3_tapered.png
