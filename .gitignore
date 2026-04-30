@@ -12,46 +12,32 @@ __pycache__/
 *.egg-info/
 dist/
 build/
-
 # Jupyter
 .ipynb_checkpoints/
 *.ipynb_checkpoints
-
 # IDE
 .vscode/
 .idea/
 *.swp
-
 # macOS
 .DS_Store
-
 # Project-specific: outputs
 outputs/
 figures/cache/
-
 # Secrets
 .env
-
 # Day 6+: large simulation output (regenerable from notebook)
 data/results_*.json
-
 # But keep lightweight summary CSVs and the master table
 !data/results_*_summary.csv
 !data/figure1_master_table_cleaned.csv
 ROADMAP.md.v0.1_backup
-
 # X5.5 audit local results (conclusions documented in handoff and notebook 13)
 notebooks/X5p5_audit_results/
 notebooks/X5p5_audit_results_row8/
-
 # Day 12 OCP modification iteration figures (intermediate dev artifacts; final = v4)
 figures/day12_ne_ocp_modifications_visual.png
 figures/day12_ocp_modifications_v2.png
 figures/day12_ocp_modifications_v3.png
 figures/day12_ocp_modifications_v3_tapered.png
-
 # Day 12 OCP modification iteration figures (dev artifacts; final = v4)
-figures/day12_ne_ocp_modifications_visual.png
-figures/day12_ocp_modifications_v2.png
-figures/day12_ocp_modifications_v3.png
-figures/day12_ocp_modifications_v3_tapered.png
