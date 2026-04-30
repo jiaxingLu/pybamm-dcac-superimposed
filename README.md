@@ -7,6 +7,9 @@
 
 **Status**: v0.2.0 development release · 30 cases × 5 model configurations (main sweep) · 14 commits · v0.1.0 archived at [10.5281/zenodo.19788879](https://doi.org/10.5281/zenodo.19788879). v0.2.0 is GitHub-only and is not minted to Zenodo; the next archived release is planned at v0.3.
 
+
+> **Metric methodology update (2026-04-29, commit a15dead)**: Day 11 stress testing revealed that the Q80 scalar first-passage metric used for the sign-coincidence numbers reported in this README is metric-unstable on the Chen2020/M50 sim side (16/24 cases show |Δt(Q*) range over Q20–Q90| > 5 min; 5/6 stress test cases sign-flip between Q80 scalar and A_Δt curve average). MJ1 experimental data remains metric-stable. Under the A_Δt curve method (trapezoidal integration over Q20–Q80), all 24 sim cases give negative average Δt regardless of configuration; sim/exp sign-coincidence on the 3 cases with MJ1 raw curve data drops from 1/3–2/3 (Q80 scalar) to 0/3 (curve method). The numbers below remain accurate as Q80-scalar-based sign-coincidence; their interpretation as cross-cell phenomenon indicators is further weakened beyond the layered framing described in this document. v0.3 plan adopts A_Δt curve method as primary metric. See `notebooks/14_plating_ablation.ipynb` for the full audit.
+
 ---
 
 ## TL;DR
