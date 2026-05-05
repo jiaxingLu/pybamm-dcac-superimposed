@@ -1,0 +1,4 @@
+param_set,v3_status,common_q_hi_Ah,v3_full_mean_s,v3_geom_mean_s,v3_resid_mean_s,v3_resid_max_abs_s,v3_topology,v3_resid_topology,v4_full_mean_s,v4_geom_mean_s,v4_resid_mean_s,v4_resid_max_abs_s,v4_topology,v4_resid_topology
+Chen2020,OK,3.6291798087944698,-682.1382262427397,-682.1417514940806,0.003525251340994373,0.022964902193052694,negative_only,near_zero,1294.1901491935441,1294.1902168896863,-6.769614238351096e-05,0.0336734757929662,positive_only,near_zero
+OKane2022,OK,3.599726364090007,-667.9343696424094,-667.937850040337,0.003480397927677359,0.03590935199645173,negative_only,near_zero,1262.6691719418861,1262.6701436985659,-0.0009717566799920974,0.007782448436046252,positive_only,near_zero
+ORegan2022,DCAC infeasible (boundary),,,,,,N/A,N/A,,,,,N/A,N/A

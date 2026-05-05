@@ -131,17 +131,154 @@ Sensitivity analysis on key Chen2020 parameters (D_s_p / D_s_n / heat-transfer h
 
 ---
 
-## Day 12+ decision tree
+## v0.3.0 progress — Days 11–18B (executed)
 
-The downstream sequence past Day 12 depends on Day 11 plating outcome:
+The v0.3.0 plan as filed at the v0.2 release named seven ablation items against the X5-A baseline, with state-layer sign-coincidence (raw Δt sign vs MJ1) as the descriptive observable. Days 11–17 executed items 1, 2, and 5, and added three emergent items (AsymBV α scan, τ_ref re-derivation, phase audit). Day 18 then introduced a methodological reframing: under prescribed-current CC operation, raw Δt(Q) is dominated by the imposed current-waveform geometry and cannot serve as the verdict variable for non-geometric state-layer acceleration. Day 18B established a Δt_resid null baseline; from Day 19 onward, DC-vs-DCAC verdicts use Δt_resid rather than raw-Δt sign-coincidence.
 
-- **Day 11 outcome (a) — plating no effect** → Day 12 OCP slope scan as planned. If OCP scan also no effect on cell-internal phenomenon, Day 13 adds dual-phase anode (`particle phases: ("2","1")`); if still no effect, Day 14 adds `surface form: differential`. If three layers all no effect → significant scientific finding: state-layer DC-AC acceleration phenomenon has cell-form-factor dependence that standard PyBaMM physics options cannot reproduce on the M50 parameter set.
+### Day 11 — Item 1: Lithium plating (irreversible + partially reversible)
 
-- **Day 11 outcome (b) — plating flips most cases** → Day 12 cross-parameter-set replication on O'Kane2022, Marquis2019, Mohtat2020 with plating activated, to confirm the plating effect generalizes beyond Chen2020 specifically. If confirmed across parameter sets, this is a strong cross-cell finding: lithium plating activation gates state-layer DC-AC acceleration in DFN sim.
+**Outcome**: branch (a). Plating in the physically reasonable parameter range (OKane2022 defaults, k_pl = 1e-9 m/s) does not flip cell-internal Δt(Q80) sign on the X5-A 24-case grid.
+**Numbers**: 1/24 Q80 sign change vs X5-A; 0/24 A_Δt curve sign change; max |Δavg| = 0.084 min; plating loss 18–23 mAh on 5 Ah; CC time −5 to −7 %. Commit `a15dead`.
+**Status**: closed. Day 12 proceeds with item 2 (OCP slope scan) and a 4-tier mechanism audit.
 
-- **Day 11 outcome (c) — plating flips selectively** → Day 12 conducts parameter scans within the plating-active and plating-inactive regions separately, mapping the activation boundary. This is the methodologically richest outcome and aligns with Lee 2025 aSPM map style.
+### Day 12 — Mechanism audit ranking + window lock
 
-In all branches: results are reported under the layered framing and acceptance criteria listed above. Sign-coincidence with MJ1 is reported descriptively but is not the pass/fail criterion.
+**Outcome**: 4-tier mechanism audit established. NOT SUPPORTED in tested range under raw-Δt verdict: solver, frequency, Q80 artifact, default plating, NE OCP A.1. A_Δt window per case fixed across baseline + all ablations (no self-adaptive windows).
+**Status**: window rule locked. Commit `c036fd9`.
+
+### Day 13 — Items 2–3 ablation grid: PE OCP + transport (D_s_n) + AsymBV α
+
+**Outcome**: 6 ablations (PE_A1a / PE_A2a + B_Dsn_up/down + asymBV_α_up/down). 0 sign flips across 47 valid PE+B cases and 36 AsymBV cases (12 invalid_window resolved in Day 14 #1). Trajectory naive 1/95 vs robust 7/95 — confirmed threshold-classification artifact, not mechanism.
+**Status**: multi-level null Day 11 + 12 + 13. Continuous shape metric introduced (Day 14 #0).
+
+### Day 14 — Continuous shape metric + AsymBV α closure
+
+**Outcome**: continuous MARD shape distance closes the trajectory-classification artifact. Sign-topology preserved at grid level (40/40 mismatches in near-zero <5 %peak, 0 in stable subset). AsymBV α scan technically closed via cross-α Q_hi from AsymBV-own Q_CC_end. Direct charge ≠ discharge asymmetry control verified on PyBaMM 26.x AsymBV (`Butler-Volmer transfer coefficient`): α weights oxidation branch, 1 − α weights reduction branch — non-textbook α_c convention. Empirical labels `α_up` / `α_down` adopted instead of theoretical charging-favoured / disfavoured.
+**Status**: closed. Commits `fc2938a`, `4bd1285`.
+
+### Day 15 — Item 3 prep: X6 phase clean test (deferred)
+
+**Outcome**: 3 X6 phases all deferred or reframed. X6α (Chen2020 composite + sigmoid V_init unanchorable, plateau ≥ 3.31 V); X6β (physical-MJ1-init V_init = 2.51 V vs Day 9 V_init = 2.82 V, ΔV = −308 mV → V_min < 2.5 V in 3/24 baseline DCAC including severe 0.2 + 0.8 C / 10τ V_min = 1.71 V); X6γ (Chen2020 lacks lith / delith OCP and hyst decay).
+**Cross-phase finding**: PyBaMM 26.3.1 + Chen2020 isolation bounded by chem-shift × V_min audit. Hard rule for chem-shift / mech-isolation: must include V_min audit (V_min_charge, V_below_2p5_fraction, low_voltage_class). Sign-topology only interpretable if class ∈ {clean} or {transient with frac < 0.02}.
+**Status**: reframed as protocol-feasibility audit. Commits `baa713e`, `f99054d`, `2ccd48a`.
+
+### Day 16 — Item 5: Alternative parameter sets (8-set chem-shift)
+
+**Outcome**: 8 DFN sets / 5 layered-oxide groups. 4 DCAC fixed τ_label = 11.1 s + set_soc(0.05). 44/48 admissible, 4/48 infeasible_Vmin (5 Ah @ DC 0.2 + AC 1.0 / 10τ). 28 DC-vs-DCAC pairs: 0 positive_only / mixed under raw-Δt verdict at 60 s absolute + 0.5 % relative threshold. Negative-or-near-zero topology extends LG M50 → 5 layered-oxide groups under fixed τ_label and the tested subset.
+**Hard rule from Day 16**: DCAC main protocol space |DC| + |AC| ≤ 1 C (MJ1-aligned); > 1 C is boundary regime only. Current function must use `pybamm.sin`; `model.events` kept.
+**Status**: closed under raw-Δt verdict. **Re-audit pending under Δt_resid framework (Day 19A scope)** — 60 s threshold was cleared by margin (geometric baseline order ~10 s, exact value pending Day 19A computation), so the existing negative-or-near-zero topology is unlikely to flip but the conclusion category must be relabeled from "negative-or-near-zero" to "geometry-explained negative-or-near-zero".
+
+### Day 17 — τ_ref re-derivation across 8 sets
+
+**Outcome**: HPPC 1 C / 10 s + 600 s relax @ SoC ~10 % via set_soc(0.05) + 0.2 C / 900 s. Verdict STRUCTURED BROAD: tau2_biexp(600 s) max/min = 3.561 across 7 + 1 outlier (Ecker2015 outlier on 1 C < 1 A failure; 7-set ratio ~1.62). Spearman 0.590 between recovery-time family (tau_FG_eff / t95 / t99) and bi-exp family (fit-window sensitive).
+**Decision**: Day 18 main descriptor for first τ rebasing = `tau_FG_eff`; secondary sensitivity = `tau2_secondary_60s`.
+**Status**: closed (notebook 21).
+
+### Day 18A — Phase audit
+
+**Outcome**: PyBaMM positive = discharge; experiment-faithful PyBaMM equivalent of NGU201 ARB (`current = dc + ac · sin`) is the **charge-first** branch
+
+    I_py = -I_DC - I_AC · sin(ωt)
+
+which flips the v3 discharge-first convention used Day 8–17. v3 ORegan2022 V_min boundary reclassified as joint condition of discharge-first phase × slow native period × low-SoC start. Charge-first 3-set × 2-protocol smoke clean; max |Δt_resid| ≤ 0.034 s (Cell 4A v4).
+**Status**: closed.
+
+### Day 18B — Geometry-corrected protocol-matrix audit
+
+**Outcome**: 3 sets (Ecker2015, Chen2020, ORegan2022) × 8 protocols (2 DC baselines + 6 charge-first DCAC at 0.1 τ / 1 τ / 10 τ for Group A 0.2C+0.4C and Group B 0.4C+0.6C) × SoC0 = 0.05 → 24 sims feasible_clean. 18 DCAC × DC_baseline pairs audited via
+
+    Δt_resid(Q) = Δt_model(Q) − Δt_geom(Q)
+
+where Δt_geom is computed analytically from the prescribed current waveform alone.
+**18/18 near_zero. Overall max |Δt_resid| = 0.0441 s** across the matrix; ≥108× margin to per-protocol numerical floor `max(5·dt_eval, 1.0) s`; ≥1360× margin to the 60 s absolute threshold; 10⁻⁶ to 10⁻⁵ residual-to-geometric ratio at 10 τ. Apparent (raw) Δt_model under charge-first reaches up to ≈31.8 min on 10 τ ORegan but is fully explained by current-waveform geometry. Voltage-event pull-forward present and large (Q_to_Vmax shift up to −45.4 % on 10 τ ORegan Group B), but is a separate voltage-coupled phenomenon outside the CC-window Δt_resid.
+**Cell 4A v4 closed-form result generalizes**: under prescribed-current CC, model dynamics affect V(t), termination, polarization, overpotential, and Q_to_Vmax but not Q_net(t); the state layer cannot express through Δt(Q).
+**Status**: closed. Full 64-sim sweep optional. Details: `docs/day18B_close.md`.
+
+---
+
+## Δt_resid framework (Day 18B framing update)
+
+For DC-vs-DCAC comparisons under prescribed-current CC operation, the verdict observable is now:
+
+    Δt_resid(Q) = Δt_model(Q) − Δt_geom(Q)
+
+where Δt_geom(Q) is the first-passage time difference computed analytically from the prescribed I(t) alone, and Δt_model(Q) is the same computed on the simulated Q_net(t) trajectory. Raw Δt_model(Q) is no longer the verdict variable for DC-vs-DCAC; it is reported alongside Δt_geom for transparency and as descriptive event-layer information.
+
+Sign convention follows Constraint 4: `Δt = t_ref − t_DCAC, positive ⇒ AC accelerates`.
+
+**Decision rule for future ablations**:
+
+> (a) **|Δt_resid| < per-protocol numerical floor max(5·dt_eval, 1.0) s** → numerical null; not interpretable as state-layer signal.
+>
+> (b) **above floor but < 60 s** → small residual; inspect Q-window construction, phase metadata, dt_eval discretization, first-passage interpolation behaviour, and protocol feasibility before mechanistic interpretation.
+>
+> (c) **≥ 60 s with stable sign topology across the Q-window** → candidate non-geometric state-layer signal; escalate to mechanism analysis.
+
+**Applicability scope of the Day 18B null floor**:
+
+    PyBaMM 26.3.1 / DFN / no model options / no degradation / no plating / no thermal
+    SoC0 = 0.05
+    charge-first phase
+    prescribed-current CC mode
+    |DC| + |AC| ≤ 1 C
+    sets tested: Ecker2015, Chen2020, ORegan2022
+    protocol grid: 0.2C+0.4C and 0.4C+0.6C × 0.1τ / 1τ / 10τ
+
+Not a universal claim about all chemistries, all controls, or all SoC ranges.
+
+**DCAC-vs-DCAC same-protocol ablations** (Day 11–14 plating / OCP / transport / AsymBV α): geometric bias cancels by construction across both sides of the ablation, so the Day 11–14 raw-Δt conclusions remain valid for their stated scope. Phase-convention metadata still requires verification under Day 19A.
+
+**0.1 τ rows** are reclassified as a numerical noise-floor probe layer: retained for floor characterization and interpolation behaviour, but not used as primary physical claim about presence or absence of state-layer effects. Strongest physical evidence comes from 10 τ rows where Δt_geom is largest and relative residual sensitivity is highest.
+
+**Cell 5C signed-storage convention reconciliation**: Cell 5C v2 originally stored the signed `dt_model_s` and `dt_geom_s` columns with opposite sign to project canonical (Constraint 4). Patched after Day 18B close. All `max|·|` statistics and all near_zero verdicts unchanged. Long-format CSV `data/day18B_smoke_dtQ_resid_curves_long.csv.gz` and the summary CSV signed-mean columns regenerated under canonical sign convention.
+
+---
+
+## Day 19+ plan (post-18B)
+
+### Day 19A — Retrospective phase + geometry audit
+
+**Scope**: Day 8–10 notebooks + Day 16 chemistry-shift fixed-label DC-vs-DCAC.
+
+**Procedure**: for each DC-vs-DCAC entry,
+
+1. identify current function definition;
+2. classify phase (charge-first / discharge-first);
+3. classify comparison type (DC-vs-DCAC / DCAC-vs-DCAC same-protocol / DCAC-vs-different-DCAC);
+4. determine whether geometry correction is required;
+5. relabel conclusion category — `geometry-explained …` if residual is below floor + 60 s; `candidate non-geometric …` only if both criteria are exceeded.
+
+**Output**: `data/day19A_retrospective_audit.csv` with columns `notebook | cell_or_script | protocol | current_formula | phase_label | comparison_type | raw_dt_valid | geometry_correction_required | old_verdict | new_status | commit_hash`.
+
+### Day 19B — PyBaMM parameter-family availability audit
+
+**Scope**: PyBaMM 26.3.1 internal parameter sets, no simulation.
+
+**Procedure**: audit each parameter set on four axes — runnable with plain `pybamm.lithium_ion.DFN()`, supports `initial_soc = 0.05`, voltage cutoffs and Q_nom, chemistry classification (layered oxide NMC / NCA / LFP-plateau / other).
+
+**Output**: `data/day19B_parameter_family_availability.csv`.
+
+### Day 19C — Geometry-corrected chemistry-shift smoke
+
+**Scope**: Chen2020 baseline + 1 NMC/NCA contrast (selected from 19B) + 1 LFP / strong-OCP contrast (selected from 19B).
+
+**Configuration**: charge-first; Group A (DC = 0.2 C, AC = 0.4 C) and Group B (DC = 0.4 C, AC = 0.6 C); 10 τ only. Full reporting per pair: Δt_model + Δt_geom + Δt_resid + V(Q) + Q_to_Vmax + CV-entry shift.
+
+**Acceptance criteria**:
+
+> (a) **All chemistries: |Δt_resid| < per-protocol floor + 60 s** → DFN under prescribed-current CC does not generate non-geometric state-layer Δt(Q) across the tested chemistry range. Search extends to OCP-shape / voltage-boundary coupling axes outside the CC window.
+>
+> (b) **One or more chemistries: |Δt_resid| ≥ floor + 60 s with stable sign topology** → response basin identified. Aging branch and f(SOC) scheduling unlock; chemistry-specific mechanism analysis follows on the responsive parameter set.
+>
+> (c) **Mixed-sign or insufficient-window cases** → narrow protocol grid, re-audit window construction, possibly extend nτ to 1 τ for robustness before drawing chemistry-level conclusions.
+
+---
+
+## HOLD conditions (post-18B)
+
+- **Aging branch**: HOLD until stable |Δt_resid| > Day 18B floor emerges in some PyBaMM model domain. Until a responsive domain is identified, aging studies risk being elaborate prescribed-current geometry rather than state-layer phenomena.
+- **Dynamic f(SOC) / tau_ref(SOC) scheduling**: HOLD until Day 19C identifies a chemistry / OCP / voltage-control branch where non-geometric Δt_resid is observable. f(SOC) is the long-term Level-3 control paradigm but cannot be designed against a null response basin.
+- **Items 3, 4, 6, 7 of v0.3 plan** (particle mechanics, double-layer extended kinetics, MJ1 Δt(Q*) noise-floor quantification, Chen2020 parameter refinement): deferred pending Day 19C outcome. Items remain valid as candidates within the v0.3.0 release boundary; ordering depends on which response basin (if any) Day 19C identifies.
 
 ---
 
@@ -167,6 +304,8 @@ These constraints are locked across all future versions; deviations require an e
 6. **Time-domain only**: HPPC pulse + bi-exponential fitting. No EIS, Nyquist, DRT, or frequency-domain impedance characterization within this repository — a deliberate scope boundary, not an oversight.
 7. **Solver convention**: All PyBaMM runs use IDAKLU (PyBaMM 4.x default; do not pass `solver=` explicitly). IDAKLU adapts its time step to the AC frequency content automatically. The X5-A 24-case data was numerically verified against this convention via dt_max sweep on rows 3 and 8 (see `PyBaMM_handoff_2026-04-28.md` §"Solver Verification"). If CasadiSolver is used explicitly, `dt_max ≤ 5 s` must be set for AC frequencies > 10 mHz to prevent AC undersampling.
 8. **Layered evaluation framework** (adopted v0.2, see "Evaluation framing (layered)" above): event-layer uses sim/exp quantitative consistency criteria; state-layer uses cell-internal phenomenon emergence criteria, with cross-cell observations reported descriptively. State-layer sign-coincidence is read as an emergent behavior indicator, not a model-quality optimization target.
+
+For DC-vs-DCAC verdicts under prescribed-current CC operation (Day 18B onward), the verdict variable is the residual Δt_resid(Q) = Δt_model(Q) − Δt_geom(Q), with Δt_geom computed analytically from the prescribed current waveform alone. Raw-Δt sign-coincidence remains valid as a descriptive cross-cell statistic under the layered evaluation framework (Constraint 8) but is no longer the primary verdict variable. Decision criterion and applicability scope: see "Δt_resid framework (Day 18B framing update)".
 
 ---
 

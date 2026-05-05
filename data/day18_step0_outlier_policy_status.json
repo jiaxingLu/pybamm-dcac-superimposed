@@ -1,0 +1,18 @@
+{
+  "source_csv": "day17_step1_tau_ref_descriptor_matrix.csv",
+  "outlier_policy_basis": "tau_FG_eff",
+  "outlier_policy_tauFG_activated": false,
+  "is_min": true,
+  "gap_to_next_s": 0.0,
+  "median_in_cluster_gap_s": 1.5,
+  "gap_ratio": 0.0,
+  "cluster_max_min": 2.1022044088176353,
+  "all8_max_min": 2.1022044088176353,
+  "concentration": 1.0,
+  "thresholds": {
+    "gap_ratio_min": 2.0,
+    "concentration_max": 0.8
+  },
+  "n_sets": 8,
+  "n_ecker_matched": 1
+}

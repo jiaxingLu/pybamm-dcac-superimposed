@@ -1,0 +1,166 @@
+{
+  "version": "v3 (recovery-time \u2192 equivalent \u03c4 via mono-exp inversion)",
+  "supersedes": "day18_step0b_descriptor_decision.json (v2)",
+  "conversion_factors": {
+    "TAU95_FACTOR": 2.99573227355399,
+    "TAU99_FACTOR": 4.605170185988091,
+    "formula": "tau_eq = t_p / (-ln(1-p)); inverts y(t) = 1 - exp(-t/tau)"
+  },
+  "tau_FG_eff_verdict": "REJECTED_AS_MAIN_PER_SET_REBASING_DESCRIPTOR",
+  "tau_FG_eff_rejection_reasons": [
+    "5 unique values among 8 sets, including three two-member ties",
+    "tie fraction = 0.375; parameter-set individuation is collapsed",
+    "values align to a 1 s grid with fixed phase \u2248 0.98 s",
+    "large within-tie spread under non-quantized descriptors (up to 4.70\u00d7 in tau2_secondary_60s)",
+    "Cell 2D confirms visible normalized-recovery divergence in primary tied pair Ai2020/Ecker2015 (max|\u0394y|=0.086)",
+    "therefore unsuitable for per-set native-frequency rebasing"
+  ],
+  "candidates": [
+    "tau2_biexp",
+    "tau2_secondary_60s",
+    "tau95_eq",
+    "tau99_eq"
+  ],
+  "thresholds": {
+    "frequency_collision_relative": 0.01,
+    "outlier_gap_ratio_min": 2.0,
+    "outlier_concentration_max": 0.8,
+    "within_family_min_rho_biexp": 0.9,
+    "within_family_min_rho_recovery": 0.7,
+    "cross_family_min_rho": 0.5,
+    "tau99_tau95_spread_threshold": 1.5,
+    "decimal_precision_for_uniqueness": 6
+  },
+  "within_family_consistency": {
+    "recovery_time": {
+      "mean_rho": 0.9047619047619048,
+      "min_rho": 0.9047619047619048,
+      "members": [
+        "tau95_eq",
+        "tau99_eq"
+      ],
+      "pair_rhos": [
+        0.9047619047619048
+      ]
+    },
+    "biexp": {
+      "mean_rho": 0.4761904761904762,
+      "min_rho": 0.4761904761904762,
+      "members": [
+        "tau2_biexp",
+        "tau2_secondary_60s"
+      ],
+      "pair_rhos": [
+        0.4761904761904762
+      ]
+    }
+  },
+  "cross_family_consistency": {
+    "recovery_vs_biexp": {
+      "mean_rho": 0.5535714285714286,
+      "min_rho": 0.4285714285714286,
+      "n_pairs": 4,
+      "pair_rhos": [
+        0.5714285714285715,
+        0.5476190476190477,
+        0.6666666666666669,
+        0.4285714285714286
+      ]
+    }
+  },
+  "tau99_role_classification": "tail_dominated_audit_only",
+  "tau99_tau95_spread_max_min": 1.5755072391749279,
+  "tau99_tau95_median_ratio": 1.5593854796373083,
+  "frequency_collisions": {
+    "tau2_biexp": {
+      "n_close_pairs": 0,
+      "pairs": []
+    },
+    "tau2_secondary_60s": {
+      "n_close_pairs": 0,
+      "pairs": []
+    },
+    "tau95_eq": {
+      "n_close_pairs": 0,
+      "pairs": []
+    },
+    "tau99_eq": {
+      "n_close_pairs": 0,
+      "pairs": []
+    },
+    "tau_FG_eff": {
+      "n_close_pairs": 3,
+      "pairs": [
+        {
+          "a": "Ai2020",
+          "b": "Ecker2015",
+          "rel_df": 0.0
+        },
+        {
+          "a": "Chen2020",
+          "b": "OKane2022",
+          "rel_df": 0.0
+        },
+        {
+          "a": "Mohtat2020",
+          "b": "NCA_Kim2011",
+          "rel_df": 0.0
+        }
+      ]
+    }
+  },
+  "outlier_structure": {
+    "tau2_biexp": {
+      "applicable": true,
+      "ecker_side": "min",
+      "gap_ratio": 5.553553783715006,
+      "concentration": 0.4548246579012665,
+      "activated": true
+    },
+    "tau2_secondary_60s": {
+      "applicable": false,
+      "ecker_side": "interior",
+      "rank": 3
+    },
+    "tau95_eq": {
+      "applicable": true,
+      "ecker_side": "min",
+      "gap_ratio": 7.454545454545463,
+      "concentration": 0.5443431873749721,
+      "activated": true
+    },
+    "tau99_eq": {
+      "applicable": true,
+      "ecker_side": "min",
+      "gap_ratio": 4.956521739130433,
+      "concentration": 0.4465482085639383,
+      "activated": true
+    },
+    "tau_FG_eff": {
+      "applicable": true,
+      "ecker_side": "tied_min",
+      "n_equal_ecker": 2,
+      "activated": false
+    }
+  },
+  "outlier_structure_role": "DIAGNOSTIC (Route-1 supportive, not universal gate)",
+  "route_decision": "ROUTE_2_RECOVERY_EQ_TAU_MAIN",
+  "execution_mode": "ANCHOR_FIRST_NOT_FULL_56",
+  "main_descriptor": "tau95_eq",
+  "sensitivity_descriptor": "tau99_eq_audit_only",
+  "bi_exp_audit_descriptor": "tau2_biexp",
+  "rejected_descriptor": "tau_FG_eff",
+  "rationale": [
+    "tau95_eq has 8/8 unique values and no frequency collisions",
+    "tau95_eq is dimensionally compatible with f = 1/(2*pi*n*tau) via mono-exp inversion of t95",
+    "recovery family coherence is high: Spearman(tau95_eq, tau99_eq) = 0.905",
+    "tau99_eq is tail-dominated (median ratio 1.559, spread 1.576) and therefore audit-only",
+    "tau2_biexp remains useful as bi-exp audit but not main; bi-exp within-family rho = 0.476",
+    "tau_FG_eff is rejected for grid quantization, tied-pair collapse, and Cell 2D shape-folding evidence",
+    "cross-family min rho = 0.429 falls in non-main pair (tau99_eq x tau2_secondary_60s); Route-2 main configuration uses tau95_eq x tau2_biexp = 0.571 which exceeds threshold"
+  ],
+  "physical_findings": {
+    "multi_exp_character": "tau99_eq / tau95_eq median = 1.559, range 1.222 - 1.925",
+    "biexp_window_dependence": "tau2_biexp (600s window) and tau2_secondary_60s (60s window) rank sets incompatibly (rho = 0.476); Day 17 STRUCTURED BROAD verdict is fit-window-specific"
+  }
+}

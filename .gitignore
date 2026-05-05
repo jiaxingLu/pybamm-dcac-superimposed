@@ -41,3 +41,9 @@ figures/day12_ocp_modifications_v2.png
 figures/day12_ocp_modifications_v3.png
 figures/day12_ocp_modifications_v3_tapered.png
 # Day 12 OCP modification iteration figures (dev artifacts; final = v4)
+
+# Day 18 / 18B trajectory NPZ files (large, regenerable from notebook 22)
+data/day18B_smoke/
+data/day18_step1_anchor_trajectories.npz
+data/day18_step1_anchor_trajectories_v3.npz
+data/day18_step1_phase_audit_trajectories_v4_charge_first.npz

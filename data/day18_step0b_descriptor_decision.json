@@ -1,0 +1,141 @@
+{
+  "tau_FG_eff_verdict": "REJECTED_AS_MAIN_PER_SET_REBASING_DESCRIPTOR",
+  "tau_FG_eff_rejection_reasons": [
+    "5 unique values among 8 sets, including three two-member ties",
+    "tie fraction = 0.375; parameter-set individuation is collapsed",
+    "values align to a 1 s grid with fixed phase \u2248 0.98 s",
+    "large within-tie spread under non-quantized descriptors (up to 4.70\u00d7 in tau2_secondary_60s)",
+    "Cell 2D confirms visible normalized-recovery divergence in primary tied pair Ai2020/Ecker2015 (max|\u0394y|=0.086)",
+    "therefore unsuitable for per-set native-frequency rebasing"
+  ],
+  "candidates": [
+    "tau2_biexp",
+    "tau2_secondary_60s",
+    "t95_s",
+    "t99_s"
+  ],
+  "thresholds": {
+    "frequency_collision_relative": 0.01,
+    "outlier_gap_ratio_min": 2.0,
+    "outlier_concentration_max": 0.8,
+    "within_family_min_rho_biexp": 0.9,
+    "within_family_min_rho_recovery": 0.7,
+    "cross_family_min_rho": 0.5,
+    "uinf_stability_spread_threshold": 1.5,
+    "decimal_precision_for_uniqueness": 6
+  },
+  "within_family_consistency": {
+    "recovery_time": {
+      "mean_rho": 0.9047619047619048,
+      "min_rho": 0.9047619047619048,
+      "members": [
+        "t95_s",
+        "t99_s"
+      ],
+      "pair_rhos": [
+        0.9047619047619048
+      ]
+    },
+    "biexp": {
+      "mean_rho": 0.4761904761904762,
+      "min_rho": 0.4761904761904762,
+      "members": [
+        "tau2_biexp",
+        "tau2_secondary_60s"
+      ],
+      "pair_rhos": [
+        0.4761904761904762
+      ]
+    }
+  },
+  "cross_family_consistency": {
+    "recovery_vs_biexp": {
+      "mean_rho": 0.5535714285714286,
+      "min_rho": 0.4285714285714286,
+      "n_pairs": 4,
+      "pair_rhos": [
+        0.5714285714285715,
+        0.5476190476190477,
+        0.6666666666666669,
+        0.4285714285714286
+      ]
+    }
+  },
+  "t99_role_classification": "tail_contaminated_audit_only",
+  "t99_t95_spread_max_min": 1.575507239174928,
+  "t99_t95_median_ratio": 2.397155307463108,
+  "frequency_collisions": {
+    "tau2_biexp": {
+      "n_close_pairs": 0,
+      "pairs": []
+    },
+    "tau2_secondary_60s": {
+      "n_close_pairs": 0,
+      "pairs": []
+    },
+    "t95_s": {
+      "n_close_pairs": 0,
+      "pairs": []
+    },
+    "t99_s": {
+      "n_close_pairs": 0,
+      "pairs": []
+    },
+    "tau_FG_eff": {
+      "n_close_pairs": 3,
+      "pairs": [
+        {
+          "a": "Ai2020",
+          "b": "Ecker2015",
+          "rel_df": 0.0
+        },
+        {
+          "a": "Chen2020",
+          "b": "OKane2022",
+          "rel_df": 0.0
+        },
+        {
+          "a": "Mohtat2020",
+          "b": "NCA_Kim2011",
+          "rel_df": 0.0
+        }
+      ]
+    }
+  },
+  "outlier_structure": {
+    "tau2_biexp": {
+      "applicable": true,
+      "ecker_side": "min",
+      "gap_ratio": 5.553553783715006,
+      "concentration": 0.4548246579012665,
+      "activated": true
+    },
+    "tau2_secondary_60s": {
+      "applicable": false,
+      "ecker_side": "interior",
+      "rank": 3
+    },
+    "t95_s": {
+      "applicable": true,
+      "ecker_side": "min",
+      "gap_ratio": 7.454545454545456,
+      "concentration": 0.5443431873749721,
+      "activated": true
+    },
+    "t99_s": {
+      "applicable": true,
+      "ecker_side": "min",
+      "gap_ratio": 4.956521739130435,
+      "concentration": 0.4465482085639383,
+      "activated": true
+    },
+    "tau_FG_eff": {
+      "applicable": true,
+      "ecker_side": "tied_min",
+      "n_equal_ecker": 2,
+      "activated": false
+    }
+  },
+  "outlier_structure_role": "DIAGNOSTIC (Route-1 supportive, not universal gate)",
+  "route_decision": "PENDING_HUMAN_REVIEW"
+}
