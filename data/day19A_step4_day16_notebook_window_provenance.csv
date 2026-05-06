@@ -1,0 +1,445 @@
+cell_index,cell_type,hits,contains_Q_hi,contains_Q_low,contains_Q_to_Vmax,contains_min,contains_safety_margin,contains_shared_or_window,excerpt
+1,code,"[""Vmax"", ""V_max"", ""voltage""]",False,False,False,False,False,False,"p here
+    is harmless across chemistries; later cells can override per-batch.""""""
+    pv = pybamm.ParameterValues(name)
+    pv[""Ambient temperature [K]""] = 293.15
+    pv[""Initial temperature [K]""] = 293.15
+    return pv
+
+
+def _probe(pset_name, model_class, do_set_soc, soc_value=0.05):
+    """"""Run a single probe with a fresh pv. Returns (status, V_init, error).""""""
+    try:
+        pv = _fresh_pv(pset_name)
+        if do_set_soc:
+            pv.set_initial_state(soc_value)
+        model = model_class(options={""thermal"": ""lumped""})
+        exp = pybamm.Experiment([""Rest for 1 second""])
+        sim = pybamm.Simulation(model, parameter_values=pv, experiment=exp)
+        with warnings.catch_warnings():
+            warnings.simplefilter(""ignore"")
+            sol = sim.solve()
+        v_arr = sol[""Voltage [V]""].entries
+        if len(v_arr) >= 1 and np.isfinite(v_arr[0]):
+            return ""ok"", float(v_arr[0]), """"
+        return ""fail"", None, ""empty or non-finite voltage array""
+    except Exception as e:
+        return ""fail"", None, f""{type(e).__name__}: {str(e)[:200]}""
+
+
+# === 2. Run three probes per parameter set ===
+print(""="" * 72)
+print(""Probing A1 (DFN native) / A2 (DFN set_soc=0.05) / A3 (SPMe native)"")
+print(""="" * 72)
+
+records = []
+for name in params_list:
+    print(f""\n[{name}]"")
+    rec = {""param_set"": name}
+
+    # Static metadata (one fresh pv, read-only)
+    try:
+        pv0 = _fresh_pv(name)
+        rec[""V_min_spec""] = (
+            float(pv0[""Lower voltage cut-off [V]""])
+            if ""Lower voltage cut-off [V]"" in pv0.keys() else None
+        )
+        rec[""V_max_spec""] = (
+            float(pv0[""Upper voltage cut-off [V]""])
+            if ""Upper voltage cut-off [V]"" in pv0.keys() else None
+        )
+        rec[""nominal_capacity_Ah""] = (
+            float(pv0[""Nominal cell capacity [A.h]""])
+            if ""Nominal cell capacity [A.h]"" in pv0.keys() else None
+        )
+        rec[""metadata_load_error""] = """"
+    except Exception as e:
+        rec[""V_min_spec""] = None
+        rec[""V_max_spec""] = None
+        rec[""nominal_capacity_Ah""] = None
+        rec[""metadata_load_error""] = f""{type(e).__name__}: {str(e)[:150]}""
+
+    # Chemistry hint via official docstring API
+    try:
+        doc = pybamm.parameter_sets.get_docstring(name) or """"
+        first_para = doc.strip().split(""\n\n"")[0].replace(""\n"", "" "").strip()
+        rec[""docstring_excerpt""] = first_para[:200]
+    except Exception as e:
+        rec[""docstring_excerpt""] = f""(docstring fetch failed: {type(e).__name__})""
+
+    # A1: DFN native default
+    t0 = _time.time()
+    s, v, err = _probe(name, pybamm.lithium_ion.DFN, do_set_soc=False)
+    rec[""A1_DFN_native_status""] = s
+    rec[""A1_DFN_native_V_init""] = v
+    rec[""A1_DFN_native_error""] = err
+    rec[""A1_time_s""] = round(_time.time() - t0, 2)
+
+    # A2: DFN + set_initial_state(0.05)
+    t0 = _time.time()
+    s, v, err = _probe(name, pybamm.lithium_ion.DFN, do_set_soc=True, soc_value=0.05)
+    rec[""A2_DFN_set_soc_0p05_status""] = s
+    rec"
+4,code,"[""Q_to_Vmax"", ""Vmax"", ""V_max"", ""voltage"", ""min(""]",False,False,True,True,False,False,"# ============================================================
+# Cell 2 (rev) — Day 16 protocol feasibility + V_min boundary screen
+# 
+# Strategy:
+#   (1) Remove voltage events from model only (not concentration events)
+#   (2) Solve over full horizon without voltage termination
+#   (3) Post-hoc detect first Vmax crossing → truncate trajectory there
+#   (4) Audit V_min on the [0, first_Vmax_idx] slice only
+#   (5) Verdict logic: 
+#         not reached Vmax           → infeasible_no_Vmax
+#         clean V trajectory         → feasible_clean
+#         transient_low_voltage      → feasible_transient
+#         severe_low_voltage         → boundary_confounded
+#       (severe is ""boundary_confounded"": Vmax reached but Vmin breached
+#        non-trivially. Not admissible as mechanism evidence — Day 15 rule.)
+# 
+# 8 sets × 6 conditions = 48 sims. No Δt(Q) here; that's Cell 3.
+# ============================================================
+
+import pybamm
+import numpy as np
+import pandas as pd
+import warnings
+import time as _time
+from pathlib import Path
+
+print(""=== Cell 2 (rev) — Day 16 protocol feasibility, post-hoc boundary audit ==="")
+print(f""PyBaMM: {pybamm.__version__}"")
+print(""DFN+thermal=lumped | set_initial_state(0.05) | Voltage events DISABLED"")
+print(""τ_label=11.1s frozen | C-rate normalized currents"")
+print()
+
+try:
+    from numpy import trapezoid as _trapz
+except ImportError:
+    from numpy import trapz as _trapz  # noqa: NPY201
+
+TAU_LABEL_s = 11.1
+def f_from_tau_label(n_tau):
+    return 1.0 / (2.0 * np.pi * n_tau * TAU_LABEL_s)
+
+SETS_PASSING = [
+    ""Ai2020"", ""Chen2020"", ""Ecker2015"", ""Marquis2019"",
+    ""Mohtat2020"", ""NCA_Kim2011"", ""OKane2022"", ""ORegan2022"",
+]
+CHEM_TAG = {
+    ""Ai2020"":      ""Enertech LCO/graphite"",
+    ""Chen2020"":    ""LG M50 lineage"",
+    ""Ecker2015"":   ""Kokam-Ecker Co-rich Mn-free"",
+    ""Marquis2019"": ""Kokam-Marquis LCO/graphite"",
+    ""Mohtat2020"":  ""graphite/NMC532"",
+    ""NCA_Kim2011"": ""graphite/NCA"",
+    ""OKane2022"":   ""LG M50 lineage"",
+    ""ORegan2022"":  ""LG M50 lineage"",
+}
+
+CONDITIONS = [
+    (""DC_0p2C"",            0.2, 0.0, None),
+    (""DC_0p5C"",            0.5, 0.0, None),
+    (""DC0p2_AC0p5_1tau"",   0.2, 0.5, 1.0),
+    (""DC0p2_AC0p5_10tau"",  0.2, 0.5, 10.0),
+    (""DC0p2_AC1p0_1tau"",   0.2, 1.0, 1.0),
+    (""DC0p2_AC1p0_10tau"",  0.2, 1.0, 10.0),
+]
+VMAX_TOL = 0.005  # V
+
+def make_current_function(I"
+5,code,"[""V_max"", ""voltage"", ""min("", ""minimum""]",False,False,False,True,False,False,"# Cell 2-MVT — Minimum Viable Test
+# Goal: validate (a) pybamm.sin fixes IDA_ERR_FAIL, 
+#       (b) keeping voltage events prevents Ai2020-style stoichiometry crash.
+# 
+# Three configurations on Chen2020 only:
+#   T1: pybamm.sin + events DISABLED + DC-only (sanity, no AC)
+#   T2: pybamm.sin + events DISABLED + DC0p2_AC0p5_1tau
+#   T3: pybamm.sin + events KEPT     + DC0p2_AC0p5_1tau
+
+import pybamm
+import numpy as np
+import warnings
+
+print(f""PyBaMM {pybamm.__version__}\n"")
+
+TAU_LABEL = 11.1
+SET_NAME = ""Chen2020""
+
+def make_pv(set_name, I_DC, I_AC, f_Hz):
+    pv = pybamm.ParameterValues(set_name)
+    pv[""Ambient temperature [K]""] = 293.15
+    pv[""Initial temperature [K]""] = 293.15
+    pv.set_initial_state(0.05)
+    if I_AC == 0.0 or f_Hz is None:
+        I_DC_signed = -abs(I_DC)
+        def i_func(t):
+            return I_DC_signed
+    else:
+        I_DC_neg = -abs(I_DC)
+        I_AC_pos = abs(I_AC)
+        def i_func(t):
+            # CRITICAL: pybamm.sin, NOT np.sin
+            return I_DC_neg + I_AC_pos * pybamm.sin(2.0 * np.pi * f_Hz * t)
+    pv[""Current function [A]""] = i_func
+    return pv
+
+def make_model(disable_voltage_events):
+    m = pybamm.lithium_ion.DFN(options={""thermal"": ""lumped""})
+    if disable_voltage_events:
+        m.events = [ev for ev in m.events if ""voltage"" not in ev.name.lower()]
+    return m
+
+def run(label, set_name, I_DC, I_AC, f_Hz, t_max, disable_events):
+    print(f""--- {label} ---"")
+    print(f""  I_DC={I_DC:.3f}A  I_AC={I_AC:.3f}A  f={f_Hz}  t_max={t_max:.0f}s  ""
+          f""disable_events={disable_events}"")
+    try:
+        pv = make_pv(set_name, I_DC, I_AC, f_Hz)
+        model = make_model(disable_events)
+        sim = pybamm.Simulation(model, parameter_values=pv)
+        with warnings.catch_warnings():
+            warnings.simplefilter(""ignore"")
+            sol = sim.solve([0.0, t_max])
+        t = np.asarray(sol[""Time [s]""].entries, dtype=float)
+        V = np.asarray(sol[""Voltage [V]""].entries, dtype=float)
+        I = np.asarray(sol[""Current [A]""].entries, dtype=float)
+        print(f""  OK  N_steps={len(t)}  t_end={t[-1]:.1f}s  ""
+              f""V_init={V[0]:.3f}V  V_min={V.min():.3f}V  V_max={V.max():.3f}V  ""
+              f""I_init={I[0]:+.3f}"
+6,code,"[""Vmax"", ""V_max"", ""voltage"", ""min("", ""minimum""]",False,False,False,True,False,False,"LG M50 lineage"",
+    ""ORegan2022"":  ""LG M50 lineage"",
+}
+
+CONDITIONS = [
+    (""DC_0p2C"",            0.2, 0.0, None),
+    (""DC_0p5C"",            0.5, 0.0, None),
+    (""DC0p2_AC0p5_1tau"",   0.2, 0.5, 1.0),
+    (""DC0p2_AC0p5_10tau"",  0.2, 0.5, 10.0),
+    (""DC0p2_AC1p0_1tau"",   0.2, 1.0, 1.0),
+    (""DC0p2_AC1p0_10tau"",  0.2, 1.0, 10.0),
+]
+
+def make_current_function(I_DC_A, I_AC_A, f_Hz):
+    if f_Hz is None or I_AC_A == 0.0:
+        I_DC_signed = -abs(I_DC_A)
+        def i_func(t):
+            return I_DC_signed
+        return i_func
+    I_DC_neg = -abs(I_DC_A)
+    I_AC_pos = abs(I_AC_A)
+    def i_func(t):
+        return I_DC_neg + I_AC_pos * pybamm.sin(2.0 * np.pi * f_Hz * t)
+    return i_func
+
+
+def classify_termination(termination_str):
+    s = (termination_str or """").lower()
+    if ""maximum voltage"" in s:
+        return ""Vmax_event""
+    if ""minimum voltage"" in s:
+        return ""Vmin_event""
+    if ""final time"" in s:
+        return ""tmax_horizon""
+    return f""other:{s[:40]}""
+
+
+records = []
+trajectories = {}  # key=f""{set}__{cond}"" → dict of arrays
+total_t0 = _time.time()
+
+for set_name in SETS_PASSING:
+    print(f""\n--- {set_name} ({CHEM_TAG[set_name]}) ---"")
+    pv0 = pybamm.ParameterValues(set_name)
+    Q_nom = float(pv0[""Nominal cell capacity [A.h]""])
+    V_max_spec = float(pv0[""Upper voltage cut-off [V]""])
+    V_min_spec = float(pv0[""Lower voltage cut-off [V]""])
+    print(f""  Q_nom={Q_nom:.3f} Ah  V_cutoff=[{V_min_spec:.2f}, {V_max_spec:.2f}] V"")
+
+    for cond_id, DC_C, AC_C, n_tau in CONDITIONS:
+        I_DC_A = DC_C * Q_nom
+        I_AC_A = AC_C * Q_nom
+        f_Hz = f_from_tau_label(n_tau) if n_tau is not None else None
+        t_max_s = 2.5 * Q_nom / I_DC_A * 3600.0
+
+        rec = {
+            ""param_set"": set_name, ""chem_tag"": CHEM_TAG[set_name],
+            ""condition"": cond_id,
+            ""DC_C"": DC_C, ""AC_C"": AC_C,
+            ""tau_label"": float(n_tau) if n_tau is not None else 0.0,
+            ""f_Hz"": float(f_Hz) if f_Hz is not None else 0.0,
+            ""Q_nom_Ah"": Q_nom,
+            ""I_DC_A"": I_DC_A, ""I_AC_A"": I_AC_A,
+            ""Vmin_cutoff_V"": V_min_spec,
+            ""Vmax_cutoff_V"": V_max_spec,
+            ""t_max_horizon_s"": t_max_s,
+        }
+
+        t0 = _time.time()
+        try:
+            pv = pybamm.ParameterValues(set_name)
+            pv[""Ambient temperature [K]""] = 293.15
+            pv[""Initial temperature [K]""] = 293.15
+            pv.set_initial_state(0.05)
+            pv[""Current function [A]""] = make_current_function(I_DC_A, I_AC_A, f_Hz)
+
+            model = pybamm.lithium_ion.DFN(options={""thermal"": ""lumped""})
+            sim = pybamm.Simulation(model, parameter_values=pv)
+            with warnings.catch_warnings():
+                warnings.simplefilter(""ignore"")
+                sol = sim.solve([0.0, t_max_s])
+
+            t_arr = np.asarray(sol[""Time [s]""].entries, dtype=float)
+            V_arr = np.asarray(sol[""Voltage [V]""].entries, dtype=float)
+            I_arr = np.asarray(sol[""Current [A]""].entries, dtyp"
+7,code,"[""Q_hi"", ""Q_low"", ""Q_to_Vmax"", ""Q_to_Vmax_DC"", ""Vmax"", ""V_max"", ""voltage"", ""min("", ""window""]",True,True,True,True,False,True,"# ============================================================
+# Cell 3A (rev) — Day 16 Δt(Q) first-pass calculation, sign summary
+# 
+# Inputs:
+#   data/day16_step2_feasibility_matrix_rev3.csv
+#   data/day16_step2_trajectories_rev3.npz
+# 
+# Direction (Day 13/14 convention):
+#   dtQ_s = t_ref_DC_s - t_protocol_s
+#   > 0  →  DCAC reaches the same Q earlier than DC reference
+#   = 0  →  equivalent (DC sanity rows must give exactly this)
+#   < 0  →  DCAC slower than DC
+# 
+# Pairing rules (frozen):
+#   - reference  = same parameter_set + DC_0p2C
+#   - protocol   = same parameter_set + DCAC condition
+#   - DC sanity  = DC_0p2C vs itself (validation row, dtQ ≡ 0)
+#   - DC_0p5C is not used (different DC_C from DCAC conditions)
+# 
+# Window (frozen):
+#   Q_low = 0.05 × Q_nom
+#   Q_hi  = min(Q_to_Vmax_protocol, Q_to_Vmax_DC_ref) − 0.02 × Q_nom
+# 
+# A_Δt scalars (units explicit):
+#   A_delta_t_area_sAh = ∫ dtQ dQ           (units: s·Ah)
+#   A_delta_t_mean_s   = area / Q_span      (units: s, window-averaged Δt)
+# 
+# Outputs:
+#   data/day16_step3a_dtQ_table.csv             (36 rows summary)
+#   data/day16_step3a_dtQ_curves_long.csv.gz    (long-format curves for Cell 3B/4)
+# ============================================================
+
+import numpy as np
+import pandas as pd
+from pathlib import Path
+
+DATA_DIR = Path(""/Users/louislu/pybamm-dcac-superimposed"") / ""data""
+CSV_IN = DATA_DIR / ""day16_step2_feasibility_matrix_rev3.csv""
+NPZ_IN = DATA_DIR / ""day16_step2_trajectories_rev3.npz""
+OUT = DATA_DIR / ""day16_step3a_dtQ_table.csv""
+OUT_CURVES = DATA_DIR / ""day16_step3a_dtQ_curves_long.csv.gz""
+
+print(""=== Cell 3A (rev) — Day 16 Δt(Q) first-pass calculation ===\n"")
+df_feas = pd.read_csv(CSV_IN)
+npz = np.load(NPZ_IN)
+print(f""Feasibility matrix: {len(df_feas)} rows"")
+print(f""Trajectory arrays:  {len(npz.files) // 3} cases\n"")
+
+
+def load_traj(set_name, cond):
+    k = f""{set_name}__{cond}""
+    return {""t_s"": npz[f""{k}__t_s""],
+            ""V_V"": npz[f""{k}__V_V""],
+            ""I_A"": npz[f""{k}__I_A""]}
+
+
+def Q_net_cum(t, I):
+    """"""Cumulative net charge (Ah). Charge throughput = ∫(-I)dt / 3600.
+    Trapezoidal rule, matches Cell 2 Q_CC_end formula.""""""
+    if len(t) < 2:
+        return np.zeros_like(t)
+    dt = np.diff(t)
+    avg = 0.5 * (-I[:-1] - I[1:])
+    return np.concatenate([[0.0], np.cumsum(avg * dt) / 3600.0])
+
+
+def Q_to_Vmax_exact(t, V, I, V_max_spec, term_class):
+    """"""If termination is Vmax_event, sundials root-finds to event boundary,
+    so trajectory endpoint Q is the precise first-passage Q. Otherwise
+    fallback to V threshold (V_max - 5mV) interpolation.""""""
+    Q = Q_net_cum(t, I)
+    if term_class == ""Vmax_event"":
+        return float(Q[-1])
+    target_V = V_max_spec - 0.005
+    mask = V >= target_V
+    if not mask.any():
+        return np.nan
+    idx = int(np.argmax(mask))
+    if idx == 0:
+        return float(Q[0])
+    V0, V1 = V[idx-1], V[idx]
+    Q0, Q1 = Q[idx-1], Q[idx]
+    if V1 == V0"
+8,code,"[""Vmax"", ""min("", ""window""]",False,False,False,True,False,True,"tau == 1.0 else +0.025
+    x = row[""AC_C""] + x_jitter
+    y = row[""A_delta_t_mean_s""]
+    color = FAMILY_COLOR[fam]
+    marker = SET_MARKER[set_name]
+    edge = ""black"" if tau == 10.0 else color
+    lw = 1.5 if tau == 10.0 else 0.5
+    ax.scatter(x, y, c=color, marker=marker, s=140,
+               edgecolors=edge, linewidths=lw, alpha=0.85, zorder=3)
+
+ax.axhline(0, color=""black"", linewidth=0.8, linestyle=""-"", zorder=1)
+ax.axhline(-60, color=""gray"", linewidth=0.6, linestyle="":"", zorder=1)
+ax.axhline(+60, color=""gray"", linewidth=0.6, linestyle="":"", zorder=1)
+ax.text(1.07, -60, ""abs near_zero ±60s"", fontsize=8, va=""center"", color=""gray"")
+
+ax.set_xlabel(""AC amplitude [C-rate]"", fontsize=11)
+ax.set_ylabel(r""$A_{\Delta t,\mathrm{mean}}$  [s]   (>0 = DCAC faster)"", fontsize=11)
+ax.set_title(""B1: Window-averaged Δt(Q) across 28 admissible DC–AC pairs\n""
+             ""(jitter: 1τ left, 10τ right;  marker edge bold = 10τ)"",
+             fontsize=11)
+ax.set_xticks([0.5, 1.0])
+ax.set_xticklabels([""0.5C"", ""1.0C""])
+ax.grid(True, alpha=0.3, zorder=0)
+
+# Family-color legend
+fam_handles = [mpatches.Patch(color=c, label=f) for f, c in FAMILY_COLOR.items()]
+leg1 = ax.legend(handles=fam_handles, loc=""lower right"", fontsize=9,
+                 title=""chemistry family"", framealpha=0.9)
+ax.add_artist(leg1)
+
+# Marker legend (LG M50 lineage internal)
+m_handles = [
+    plt.Line2D([0], [0], marker=""o"", color=""w"", markerfacecolor=""gray"",
+               markersize=10, label=""primary""),
+    plt.Line2D([0], [0], marker=""s"", color=""w"", markerfacecolor=""gray"",
+               markersize=10, label=""Marquis2019""),
+    plt.Line2D([0], [0], marker=""^"", color=""w"", markerfacecolor=""gray"",
+               markersize=10, label=""OKane2022""),
+    plt.Line2D([0], [0], marker=""v"", color=""w"", markerfacecolor=""gray"",
+               markersize=10, label=""ORegan2022""),
+]
+ax.legend(handles=m_handles, loc=""upper right"", fontsize=8,
+          title=""set marker (within family)"", framealpha=0.9)
+
+plt.tight_layout()
+out_b1 = FIG_DIR / ""B1_scatter_overview.png""
+fig.savefig(out_b1, dpi=150, bbox_inches=""tight"")
+plt.close(fig)
+print(f""  [wrote] {out_b1}"")
+
+
+# ==========================================================================
+# Figure B2 — heatmap: A_delta_t_mean_s
+# ==========================================================================
+print(""Generating B2 heatmap (A_mean) ..."")
+DCAC_CONDS = [c for c in CONDITION_ORDER if c not in (""DC_0p2C"", ""DC_0p5C"")]
+
+# Build matrix: rows = sets (in SET_ORDER), cols = DCAC conditions
+mat = np.full((len(SET_ORDER), len(DCAC_CONDS)), np.nan)
+for i, s in enumerate(SET_ORDER):
+    for j, c in enumerate(DCAC_CONDS):
+        sub = dcac[(dcac[""param_set""] == s) & (dcac[""condition""] == c)]
+        if len(sub) == 1:
+            mat[i, j] = sub[""A_delta_t_mean_s""].iloc[0]
+
+fig, ax = plt.subplots(figsize=(7, 6))
+# Diverging colormap centered at 0
+vmax_abs = max(abs(np.nanmin(mat)), abs(np.nanmax(mat)))
+im = ax.imshow(mat, cmap=""RdBu"", vmin=-vmax_abs, vmax=+vmax_abs, "

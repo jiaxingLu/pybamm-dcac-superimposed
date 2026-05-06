@@ -1,0 +1,6 @@
+file,record_idx,case_id,condition,n_original,n_clean,n_removed,n_duplicate_groups,had_negative_jumps,q_match_max_abs_mAh,q_match_rmse_mAh,t_strictly_increasing_after_clean
+data/results_day8_x2_dfn_mj1freq_v2.json,4,DC0.20C+AC0.30C_f0.00041Hz,0.2+0.3C 34.8τ,444,443,1,1,False,2.1987370928400196e-06,7.533083717802626e-07,True
+data/results_day8_x2_dfn_mj1freq_v2.json,25,DC0.20C_baseline,0.2C_DC,236,235,1,1,False,2.8591509362740908e-05,1.2087257577565667e-05,True
+data/results_day8_x4_dfn_chenfreq.json,25,DC0.20C_baseline,0.2C_DC,236,235,1,1,False,2.8591509362740908e-05,1.2087257577565667e-05,True
+data/results_day8_x4_dfn_chenfreq.json,34,DC0.20C+AC0.30C_f0.00080Hz,0.2+0.3C 10τ,814,813,1,1,False,3.763673339562956e-05,9.96561400337519e-06,True
+data/results_day8_x4_dfn_chenfreq.json,56,DC0.20C_baseline,0.2C_DC,236,235,1,1,False,2.8591509362740908e-05,1.2087257577565667e-05,True

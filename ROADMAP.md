@@ -316,3 +316,55 @@ These principles govern how releases are scoped and produced; they predate v0.1 
 - **MVP first**: deliver a functional release before extending scope. Each version solves one coherent question end-to-end before the next begins.
 - **Documented approximations**: every simplification (e.g., Chen2020 used as a parameter set for LG M50 21700 in studies comparing against MJ1 data, in the absence of a fitted MJ1 parameter set) is explicitly flagged in code comments, notebook narrative, or this ROADMAP.
 - **Reproducibility**: every result (figure, metric, sign-coincidence count) traceable to a notebook cell + parameter set version + git commit hash. Negative results are retained, not deleted.
+
+<!-- DAY19A_ROADMAP_START -->
+### Day 19A — Retrospective phase + geometry audit
+
+Status: closed technical audit.
+
+Primary finding:
+
+    Historical PyBaMM DC–AC simulations from nb04–nb20 used discharge-first implementation,
+    while the MJ1 experimental ARB convention corresponds to charge-first under PyBaMM sign.
+
+Historical implementation:
+
+    I_py(t) = -|I_DC| + |I_AC| sin(ωt)
+
+Experiment-faithful charge-first convention:
+
+    I_py(t) = -|I_DC| - |I_AC| sin(ωt)
+
+This is an implementation–intent phase-alignment mismatch. The correct framing is reclassification, not invalidation.
+
+Evidence summary:
+
+- CSV sign self-audit: 7/7 time-pair-auditable files use `Δt = t_ref − t_protocol`.
+- Legacy Day8/Day9 JSON audit: 247 usable records preserve `t_chg`, `I_chg`, and strict-net `Q_net_trajectory`.
+- Day18B null baseline: `max|Δt_resid| = 0.044075 s`, confirming prescribed-current CC geometry dominance.
+- MJ1 geometry anchor: charge-first 0.3C+0.7C 10τ gives mean `Δt_geom ≈ +337.50 s`.
+- Day18B / Day18 v4 geometry validation: 1272 stored geometry points reproduced using actual rebased frequency metadata.
+- Day8/Day9 retro audit: 198 historical DC-vs-DCAC pairs decomposed; all are discharge-first lineage.
+- Day16 / nb20 audit: 36 stored-first-passage groups decomposed as supporting evidence.
+- DCAC-vs-DCAC ablation audit: nb14/15/16/19 retain same-phase discharge-first internal validity; nb18 provides paired phase evidence.
+
+JES2 §4 candidate:
+
+    Raw first-passage Δt(Q) is not a phase-invariant non-geometric observable
+    under oscillatory prescribed-current excitation. It must be decomposed as:
+
+    Δt_model(Q) = Δt_geom(Q) + Δt_resid(Q)
+
+Files:
+
+    docs/day19A_retrospective_audit.md
+    data/day19A_step6_evidence_register.csv
+    data/day19A_step6_final_verdict_summary.csv
+
+Next steps:
+
+- Day19B / Day20+: segmented full-protocol audit.
+- Separate AC-on prescribed-current CC geometry from voltage-boundary timing, AC-off transition, and CV feedback trajectory.
+- Do not mix Day19B / Day20 work into the Day19A commit.
+<!-- DAY19A_ROADMAP_END -->
+

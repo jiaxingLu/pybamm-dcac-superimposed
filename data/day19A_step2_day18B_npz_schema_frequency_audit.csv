@@ -1,0 +1,25 @@
+file,n_keys,keys,freq_like_keys,tau_like_keys,time_like_keys,current_like_keys,voltage_like_keys,scalar_preview
+Chen2020__DCAC_DC0p2C_AC0p4C_0p1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Chen2020__DCAC_DC0p2C_AC0p4C_10tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Chen2020__DCAC_DC0p2C_AC0p4C_1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Chen2020__DCAC_DC0p4C_AC0p6C_0p1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Chen2020__DCAC_DC0p4C_AC0p6C_10tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Chen2020__DCAC_DC0p4C_AC0p6C_1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Chen2020__DC_0p2C.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Chen2020__DC_0p4C.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Ecker2015__DCAC_DC0p2C_AC0p4C_0p1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Ecker2015__DCAC_DC0p2C_AC0p4C_10tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Ecker2015__DCAC_DC0p2C_AC0p4C_1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Ecker2015__DCAC_DC0p4C_AC0p6C_0p1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Ecker2015__DCAC_DC0p4C_AC0p6C_10tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Ecker2015__DCAC_DC0p4C_AC0p6C_1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Ecker2015__DC_0p2C.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+Ecker2015__DC_0p4C.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+ORegan2022__DCAC_DC0p2C_AC0p4C_0p1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+ORegan2022__DCAC_DC0p2C_AC0p4C_10tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+ORegan2022__DCAC_DC0p2C_AC0p4C_1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+ORegan2022__DCAC_DC0p4C_AC0p6C_0p1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+ORegan2022__DCAC_DC0p4C_AC0p6C_10tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+ORegan2022__DCAC_DC0p4C_AC0p6C_1tau.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+ORegan2022__DC_0p2C.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}
+ORegan2022__DC_0p4C.npz,4,"[""t"", ""V"", ""I"", ""Q_net""]",[],[],"[""t"", ""Q_net""]",[],[],{}

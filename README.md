@@ -311,3 +311,28 @@ Specialization: lithium-ion battery characterization and modeling
 ## License
 
 MIT
+
+<!-- DAY19A_PHASE_CONVENTION_START -->
+## Phase convention and Day 19A reclassification
+
+Historical DC–AC notebooks 04–20 used a discharge-first PyBaMM waveform:
+
+    I_py(t) = -|I_DC| + |I_AC| sin(ωt)
+
+PyBaMM uses `I > 0` for discharge and `I < 0` for charge. The MJ1 experimental NGU201 ARB waveform corresponds to charge-first after translation into PyBaMM sign:
+
+    I_py(t) = -|I_DC| - |I_AC| sin(ωt)
+
+Day 19A identifies this as an implementation–intent phase-alignment mismatch. Historical simulations are reclassified rather than discarded.
+
+Raw first-passage `Δt(Q)` is phase-coupled through current geometry. Non-geometric state-layer acceleration claims require:
+
+    Δt_resid(Q) = Δt_model(Q) − Δt_geom(Q)
+
+Details:
+
+    docs/day19A_retrospective_audit.md
+    data/day19A_step6_evidence_register.csv
+    data/day19A_step6_final_verdict_summary.csv
+<!-- DAY19A_PHASE_CONVENTION_END -->
+

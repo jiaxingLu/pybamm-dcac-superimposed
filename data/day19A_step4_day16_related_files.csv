@@ -1,0 +1,7 @@
+path,name,suffixes,size_kb,mtime
+data/day16_step1_axis_a_audit.csv,day16_step1_axis_a_audit.csv,.csv,9.85,2026-05-03 12:29
+data/day16_step2_feasibility_matrix_rev3.csv,day16_step2_feasibility_matrix_rev3.csv,.csv,13.93,2026-05-03 13:21
+data/day16_step2_trajectories_rev3.npz,day16_step2_trajectories_rev3.npz,.npz,3766.3,2026-05-03 13:21
+data/day16_step3a_dtQ_curves_long.csv.gz,day16_step3a_dtQ_curves_long.csv.gz,.csv.gz,129.47,2026-05-03 13:25
+data/day16_step3a_dtQ_table.csv,day16_step3a_dtQ_table.csv,.csv,13.4,2026-05-03 13:25
+notebooks/20_param_set_wiring_audit.ipynb,20_param_set_wiring_audit.ipynb,.ipynb,139.86,2026-05-03 13:52

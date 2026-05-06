@@ -1,0 +1,2 @@
+file,file_family,n_rows,dt_col,geom_col,resid_col,n_valid,max_abs_identity_err_s,median_identity_err_s,identity_status
+day18_step2_dt_Q_curves_long_v4_charge_first.csv.gz,dtQ_curve_like,240,dtQ_s,dtQ_geom_s,dtQ_resid_s,240,4.547473508864641e-13,0.0,ok
