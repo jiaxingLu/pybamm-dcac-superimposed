@@ -336,3 +336,19 @@ Details:
     data/day19A_step6_final_verdict_summary.csv
 <!-- DAY19A_PHASE_CONVENTION_END -->
 
+
+## Day21A MJ1 full-protocol segmentation audit
+
+The Day21A audit closes the MJ1 experimental full-protocol segmentation analysis for the 0.3C reference group and the 0.3C+0.7C DC–AC protocols at 0.1τ, 1τ, and 10τ.
+
+The audit separates raw state-equivalent first-passage gain from mechanism attribution. The main conclusion is that the measured full-protocol gains are real, but not mechanism-pure. The preferred interpretation is a boundary/control-state mediated first-passage gain with diagnostic caveats, rather than demonstrated non-geometric Segment-A acceleration.
+
+Key outputs:
+
+- `docs/day21A_close.md`
+- `data/day21A_step7_unified_MJ1_PyBaMM_mechanism_verdict.csv`
+- `data/day21A_step8_closure_summary.csv`
+- `notebooks/25_day21A_MJ1_experimental_segment_audit.ipynb`
+
+Raw NGU201 CSV files are not tracked in Git and are excluded via `.gitignore`.
+
