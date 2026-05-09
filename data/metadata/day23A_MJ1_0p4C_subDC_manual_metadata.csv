@@ -1,0 +1,4 @@
+file_name,T_surface_max_C,T_surface_mean_C,temperature_sensor_type,temperature_alignment_method,temperature_data_status,U00_12h_V,metadata_status,metadata_notes
+0.4C DC.csv,,,unknown_or_not_available,not_available,missing_temperature_summary,,auto_created_missing_temperature_summary,Temperature summary unavailable for Day23A active subset; U00 optional and currently NaN unless manually patched.
+DC0.4C+AC0.3C f=0.0143Hz.csv,,,unknown_or_not_available,not_available,missing_temperature_summary,,auto_created_missing_temperature_summary,Temperature summary unavailable for Day23A active subset; U00 optional and currently NaN unless manually patched.
+处理后DC0.4C+AC0.1C f=0.0143Hz.csv,,,unknown_or_not_available,not_available,missing_temperature_summary,,auto_created_missing_temperature_summary,Temperature summary unavailable for Day23A active subset; U00 optional and currently NaN unless manually patched.

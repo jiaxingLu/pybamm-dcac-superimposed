@@ -1,0 +1,109 @@
+{
+  "group_id": "Day23A_MJ1_0p4C_subDC_1tau",
+  "notebook": "27_day23A_MJ1_0p4C_subDC_1tau_audit.ipynb",
+  "created_utc": "2026-05-09T10:19:15.713251+00:00",
+  "git_head": "70e8d6a405ec267f566bab1d7fa4829900b7826d",
+  "framework_decision": {
+    "mode": "generalized_boundary_ordering_required",
+    "downstream_segmentation_rule": "use_G0_G1_G2_boundary_ordering",
+    "original_A_B_D_framework_allowed": false,
+    "generalized_boundary_ordering_required": true,
+    "reason": "Cell 0C shows continued fixed-frequency current components after Vmax for all active DCAC files. Day21A/Day22A AC-off Segment B assumption is invalid."
+  },
+  "scientific_scope": {
+    "purpose": "Audit fixed-1tau 0.4C sub-DC-amplitude MJ1 protocols under generalized boundary ordering because post-Vmax AC continues.",
+    "central_question": "Does a boundary-related first-passage effect persist when AC_C < DC_C, and how does boundary ordering behave when AC is not switched off after Vmax?",
+    "active_kappa_values": [
+      0.25,
+      0.75
+    ],
+    "excluded_kappa_values": [
+      0.5
+    ]
+  },
+  "active_protocols": [
+    {
+      "file_name": "0.4C DC.csv",
+      "protocol_label": "0.4C DC",
+      "protocol_role": "DC_reference",
+      "DC_C": 0.4,
+      "AC_C": 0.0,
+      "kappa": 0.0,
+      "m_tau": NaN,
+      "frequency_Hz": 0.0
+    },
+    {
+      "file_name": "处理后DC0.4C+AC0.1C f=0.0143Hz.csv",
+      "protocol_label": "0.4C+0.1C 1tau",
+      "protocol_role": "DCAC",
+      "DC_C": 0.4,
+      "AC_C": 0.1,
+      "kappa": 0.25,
+      "m_tau": 1.0,
+      "frequency_Hz": 0.014338283161432014
+    },
+    {
+      "file_name": "DC0.4C+AC0.3C f=0.0143Hz.csv",
+      "protocol_label": "0.4C+0.3C 1tau",
+      "protocol_role": "DCAC",
+      "DC_C": 0.4,
+      "AC_C": 0.3,
+      "kappa": 0.75,
+      "m_tau": 1.0,
+      "frequency_Hz": 0.014338283161432014
+    }
+  ],
+  "excluded_files": {
+    "files": [
+      "DC0.4C+AC0.2C f=0.0143Hz.csv"
+    ],
+    "reason": "0.4C+0.2C raw record lacks required pre-Vmax CC segment."
+  },
+  "constants": {
+    "ONE_C_A": 3.4,
+    "Q_NOM_AH": 3.4,
+    "TAU_LABEL_S": 11.1,
+    "FREQ_1TAU_HZ": 0.014338283161432014,
+    "Q80_NOMINAL_AH": 2.72,
+    "Q90_NOMINAL_AH": 3.06,
+    "VMAX_V": 4.2,
+    "ICUTOFF_A": 0.05,
+    "G0_Q_LO_AH": 0.05,
+    "Q_GRID_STEP_AH": 0.01,
+    "Q_GRID_MIN_COUNT_G0": 30
+  },
+  "thresholds": {
+    "Q_BOUNDARY_DEGENERATE_TOLERANCE_AH": 0.001,
+    "G0_RESID_FLOOR_COMPATIBLE_THRESHOLD_S": 2.7,
+    "G0_RESID_REOPEN_THRESHOLD_S": 6.75,
+    "POST_BOUNDARY_PRESERVATION_THRESHOLD_S": 2.7
+  },
+  "generalized_regions": {
+    "G0": "Q <= min(Q_DC,Vmax, Q_DCAC,Vmax)",
+    "G1": "min(Q_DC,Vmax, Q_DCAC,Vmax) < Q <= max(Q_DC,Vmax, Q_DCAC,Vmax)",
+    "G2": "Q > max(Q_DC,Vmax, Q_DCAC,Vmax)",
+    "residual_allowed_only_in": "G0"
+  },
+  "integration_rule": {
+    "name": "strict_net_signed_current",
+    "rectification": false,
+    "monotonic_forcing": false,
+    "first_passage": true
+  },
+  "formal_vs_diagnostic": {
+    "formal_geometry": "metadata_prescribed_waveform_in_G0_only",
+    "diagnostic_geometry": "fitted_waveform",
+    "rule": "fitted_waveform_residual_does_not_replace_prescribed_geometry_residual"
+  },
+  "caveats": {
+    "continued_AC_after_Vmax": "continued_AC_after_Vmax",
+    "not_same_protocol_family_as_Day21A_Day22A": "not_same_protocol_family_as_Day21A_Day22A",
+    "temperature_summary_missing": "temperature_summary_missing",
+    "no_repeat_noise_floor": "no_independent_repeat_based_experimental_noise_floor"
+  },
+  "temperature_handling": {
+    "status": "missing_temperature_summary",
+    "all_temperature_values": "NaN",
+    "thermal_attribution_allowed": false
+  }
+}
