@@ -1,0 +1,43 @@
+parameter_set,pair_id,event,delta_min,description,cumulative_delta_t_min
+Chen2020,P01_0p3DC_vs_0p3p0p7_10tau,initial_grid_lead,2.0944527922185006,Initial Δt at first evaluated Q-grid point,2.0944527922185006
+Chen2020,P01_0p3DC_vs_0p3p0p7_10tau,within_A_common_prescribed_CC,6.488548958459839,Within-segment lead change in A_common_prescribed_CC,8.58300175067834
+Chen2020,P01_0p3DC_vs_0p3p0p7_10tau,handover_to_B_DCAC_CV__DC_CC,-7.607800919028765,Lead jump into B_DCAC_CV__DC_CC,0.975200831649575
+Chen2020,P01_0p3DC_vs_0p3p0p7_10tau,within_B_DCAC_CV__DC_CC,0.1047503320753701,Within-segment lead change in B_DCAC_CV__DC_CC,1.079951163724945
+Chen2020,P01_0p3DC_vs_0p3p0p7_10tau,handover_to_D_common_CV,0.02260607231270706,Lead jump into D_common_CV,1.102557236037652
+Chen2020,P01_0p3DC_vs_0p3p0p7_10tau,within_D_common_CV,-0.9452355468161233,Within-segment lead change in D_common_CV,0.1573216892215289
+Chen2020,P02_0p3DC_vs_0p3p0p7_1tau,initial_grid_lead,0.2858735460565574,Initial Δt at first evaluated Q-grid point,0.2858735460565574
+Chen2020,P02_0p3DC_vs_0p3p0p7_1tau,within_A_common_prescribed_CC,0.30106563949601933,Within-segment lead change in A_common_prescribed_CC,0.5869391855525767
+Chen2020,P02_0p3DC_vs_0p3p0p7_1tau,handover_to_B_DCAC_CV__DC_CC,0.0426198317697829,Lead jump into B_DCAC_CV__DC_CC,0.6295590173223596
+Chen2020,P02_0p3DC_vs_0p3p0p7_1tau,within_B_DCAC_CV__DC_CC,5.671101970761537,Within-segment lead change in B_DCAC_CV__DC_CC,6.300660988083897
+Chen2020,P02_0p3DC_vs_0p3p0p7_1tau,handover_to_D_common_CV,-0.10411591817152477,Lead jump into D_common_CV,6.196545069912372
+Chen2020,P02_0p3DC_vs_0p3p0p7_1tau,within_D_common_CV,-0.5105655228502055,Within-segment lead change in D_common_CV,5.685979547062167
+Chen2020,P03_0p3DC_vs_0p3p0p7_0p1tau,initial_grid_lead,0.026200274586746748,Initial Δt at first evaluated Q-grid point,0.026200274586746748
+Chen2020,P03_0p3DC_vs_0p3p0p7_0p1tau,within_A_common_prescribed_CC,0.042976977651579776,Within-segment lead change in A_common_prescribed_CC,0.06917725223832652
+Chen2020,P03_0p3DC_vs_0p3p0p7_0p1tau,handover_to_B_DCAC_CV__DC_CC,-0.01636146873452162,Lead jump into B_DCAC_CV__DC_CC,0.0528157835038049
+Chen2020,P03_0p3DC_vs_0p3p0p7_0p1tau,within_B_DCAC_CV__DC_CC,8.31851447091849,Within-segment lead change in B_DCAC_CV__DC_CC,8.371330254422295
+Chen2020,P03_0p3DC_vs_0p3p0p7_0p1tau,handover_to_D_common_CV,-0.10950973237028627,Lead jump into D_common_CV,8.261820522052009
+Chen2020,P03_0p3DC_vs_0p3p0p7_0p1tau,within_D_common_CV,-0.4463519719741269,Within-segment lead change in D_common_CV,7.815468550077882
+Ecker2015,P01_0p3DC_vs_0p3p0p7_10tau,initial_grid_lead,2.198088144598257,Initial Δt at first evaluated Q-grid point,2.198088144598257
+Ecker2015,P01_0p3DC_vs_0p3p0p7_10tau,within_A_common_prescribed_CC,6.415786129008826,Within-segment lead change in A_common_prescribed_CC,8.613874273607083
+Ecker2015,P01_0p3DC_vs_0p3p0p7_10tau,handover_to_B_DCAC_CV__DC_CC,-6.572976421126744,Lead jump into B_DCAC_CV__DC_CC,2.040897852480339
+Ecker2015,P01_0p3DC_vs_0p3p0p7_10tau,within_B_DCAC_CV__DC_CC,0.8857541526346417,Within-segment lead change in B_DCAC_CV__DC_CC,2.9266520051149807
+Ecker2015,P01_0p3DC_vs_0p3p0p7_10tau,handover_to_D_common_CV,0.002301253974565043,Lead jump into D_common_CV,2.9289532590895457
+Ecker2015,P01_0p3DC_vs_0p3p0p7_10tau,within_D_common_CV,0.11145972964350204,Within-segment lead change in D_common_CV,3.0404129887330478
+Ecker2015,P02_0p3DC_vs_0p3p0p7_1tau,initial_grid_lead,0.39325229388651195,Initial Δt at first evaluated Q-grid point,0.39325229388651195
+Ecker2015,P02_0p3DC_vs_0p3p0p7_1tau,within_A_common_prescribed_CC,0.3610820015947823,Within-segment lead change in A_common_prescribed_CC,0.7543342954812943
+Ecker2015,P02_0p3DC_vs_0p3p0p7_1tau,handover_to_B_DC_CV__DCAC_CC,-0.1288429873712933,Lead jump into B_DC_CV__DCAC_CC,0.625491308110001
+Ecker2015,P02_0p3DC_vs_0p3p0p7_1tau,within_B_DC_CV__DCAC_CC,0.0,Within-segment lead change in B_DC_CV__DCAC_CC,0.625491308110001
+Ecker2015,P02_0p3DC_vs_0p3p0p7_1tau,handover_to_D_common_CV,0.8200515890462156,Lead jump into D_common_CV,1.4455428971562165
+Ecker2015,P02_0p3DC_vs_0p3p0p7_1tau,within_D_common_CV,0.0,Within-segment lead change in D_common_CV,1.4455428971562165
+Ecker2015,P03_0p3DC_vs_0p3p0p7_0p1tau,initial_grid_lead,0.05286655059056168,Initial Δt at first evaluated Q-grid point,0.05286655059056168
+Ecker2015,P03_0p3DC_vs_0p3p0p7_0p1tau,within_A_common_prescribed_CC,0.0029009310081491435,Within-segment lead change in A_common_prescribed_CC,0.055767481598710825
+Ecker2015,P03_0p3DC_vs_0p3p0p7_0p1tau,handover_to_B_DCAC_CV__DC_CC,0.13625714157566715,Lead jump into B_DCAC_CV__DC_CC,0.19202462317437796
+Ecker2015,P03_0p3DC_vs_0p3p0p7_0p1tau,within_B_DCAC_CV__DC_CC,0.0,Within-segment lead change in B_DCAC_CV__DC_CC,0.19202462317437796
+Ecker2015,P03_0p3DC_vs_0p3p0p7_0p1tau,handover_to_D_common_CV,-0.01766511128738177,Lead jump into D_common_CV,0.1743595118869962
+Ecker2015,P03_0p3DC_vs_0p3p0p7_0p1tau,within_D_common_CV,-0.0186031273278483,Within-segment lead change in D_common_CV,0.1557563845591479
+ORegan2022,P01_0p3DC_vs_0p3p0p7_10tau,initial_grid_lead,2.0944527922185006,Initial Δt at first evaluated Q-grid point,2.0944527922185006
+ORegan2022,P01_0p3DC_vs_0p3p0p7_10tau,within_A_common_prescribed_CC,4.020388801098001,Within-segment lead change in A_common_prescribed_CC,6.114841593316502
+ORegan2022,P02_0p3DC_vs_0p3p0p7_1tau,initial_grid_lead,0.2858735460565574,Initial Δt at first evaluated Q-grid point,0.2858735460565574
+ORegan2022,P02_0p3DC_vs_0p3p0p7_1tau,within_A_common_prescribed_CC,0.27731711112542806,Within-segment lead change in A_common_prescribed_CC,0.5631906571819855
+ORegan2022,P03_0p3DC_vs_0p3p0p7_0p1tau,initial_grid_lead,0.026200274586746748,Initial Δt at first evaluated Q-grid point,0.026200274586746748
+ORegan2022,P03_0p3DC_vs_0p3p0p7_0p1tau,within_A_common_prescribed_CC,0.01857757285892869,Within-segment lead change in A_common_prescribed_CC,0.04477784744567544
