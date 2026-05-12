@@ -1,0 +1,7 @@
+event,delta_min,description,cumulative_delta_t_min,verdict
+initial_grid_lead,2.0944527922185006,Initial Δt at first evaluated Q-grid point,2.0944527922185006,adds_lead
+within_A_common_prescribed_CC,6.488566302183955,Within-segment lead change in A_common_prescribed_CC,8.583019094402456,adds_lead
+handover_to_B_DCAC_CV__DC_CC,-7.607801271654292,Lead jump from previous segment into B_DCAC_CV__DC_CC,0.9752178227481636,consumes_lead
+within_B_DCAC_CV__DC_CC,0.10474900789295138,Within-segment lead change in B_DCAC_CV__DC_CC,1.079966830641115,near_preserve
+handover_to_D_common_CV,0.022613345820597264,Lead jump from previous segment into D_common_CV,1.1025801764617122,near_preserve
+within_D_common_CV,-0.9441651998922073,Within-segment lead change in D_common_CV,0.15841497656950498,consumes_lead
