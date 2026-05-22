@@ -1,0 +1,10 @@
+parameter_set,model_type,parameter_status,model_status,nominal_capacity_Ah,parameter_error,model_error
+Chen2020,DFN,ok,ok,5.0,,
+Chen2020,SPMe,ok,ok,5.0,,
+Chen2020,SPM,ok,ok,5.0,,
+Ecker2015,DFN,ok,ok,0.15625,,
+Ecker2015,SPMe,ok,ok,0.15625,,
+Ecker2015,SPM,ok,ok,0.15625,,
+ORegan2022,DFN,ok,ok,5.0,,
+ORegan2022,SPMe,ok,ok,5.0,,
+ORegan2022,SPM,ok,ok,5.0,,

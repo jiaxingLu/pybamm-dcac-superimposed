@@ -1,0 +1,4 @@
+model_type,cell_temperature_K,elyte_c_mean,elyte_c_range,eta_n_mean,eta_p_mean,j_n_rms,j_p_rms,neg_avg_sto,neg_avg_surface_sto,neg_max_surface_sto,neg_min_surface_sto,pos_avg_sto,pos_avg_surface_sto,total_heating_mean
+DFN,True,True,True,True,True,True,True,True,True,True,True,True,True,True
+SPM,True,True,True,True,True,True,True,True,True,True,True,True,True,True
+SPMe,True,True,True,True,True,True,True,True,True,True,True,True,True,True
