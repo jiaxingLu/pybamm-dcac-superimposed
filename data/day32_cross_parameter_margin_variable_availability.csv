@@ -1,0 +1,4 @@
+parameter_set,status,missing_keys,available_keys
+Chen2020,ok,,Negative electrode surface potential difference [V]; Negative electrode surface potential difference at separator interface [V]; X-averaged negative electrode surface potential difference [V]
+Ecker2015,ok,,Negative electrode surface potential difference [V]; Negative electrode surface potential difference at separator interface [V]; X-averaged negative electrode surface potential difference [V]
+ORegan2022,ok,,Negative electrode surface potential difference [V]; Negative electrode surface potential difference at separator interface [V]; X-averaged negative electrode surface potential difference [V]

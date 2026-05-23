@@ -1,0 +1,4 @@
+parameter_set,dc_min_U_NE_mV,dc_margin_class,min_scanned_AC_C,max_scanned_AC_C,estimated_AC_C_at_0mV,estimated_peak_C_at_0mV,boundary_class,interpretation
+Chen2020,37.28056183906979,near_boundary,0.1,0.7,0.38610964808746384,0.6861096480874638,within_scan_range,hard-margin boundary within scanned amplitude range
+Ecker2015,73.6184215014089,safe_margin,0.1,0.7,,,above_scan_range,no hard-margin crossing within scanned amplitudes
+ORegan2022,-98.368507578241,risk_flag,0.1,0.7,,,baseline_or_below_scan_range,DC baseline or all scanned amplitudes already below 0 mV proxy

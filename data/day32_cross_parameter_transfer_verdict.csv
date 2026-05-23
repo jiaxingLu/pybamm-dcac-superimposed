@@ -1,0 +1,4 @@
+parameter_set,dc_min_U_NE_mV,dc_margin_class,n_scanned_DCAC,n_safe_margin,n_near_boundary,n_risk_flag,estimated_AC_C_at_0mV,estimated_peak_C_at_0mV,boundary_class,transfer_class,interpretation
+Chen2020,37.28056183906979,near_boundary,8,0,5,3,0.38610964808746384,0.6861096480874638,within_scan_range,boundary_within_scan,Hard-margin boundary occurs within scanned AC amplitudes.
+Ecker2015,73.6184215014089,safe_margin,8,8,0,0,,,above_scan_range,all_scanned_amplitudes_admissible,No hard-margin crossing within scanned AC amplitudes.
+ORegan2022,-98.368507578241,risk_flag,8,0,0,8,,,baseline_or_below_scan_range,baseline_risk_not_admissible_reference,DC reference already violates hard-margin proxy; not directly comparable for admissible-gain transfer.
