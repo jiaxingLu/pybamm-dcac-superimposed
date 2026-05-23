@@ -1,0 +1,3 @@
+audit_layer,frequency,estimated_AC_C_at_0mV,estimated_peak_C_at_0mV,interpretation
+full_protocol,1.5tau_set,0.38610964808746384,0.6861096480874638,primary conservative hard-margin boundary
+common_equalQ,1.5tau_set,,,no crossing within AC=0.30–0.40C; previous coarse scan suggests boundary above 0.40C

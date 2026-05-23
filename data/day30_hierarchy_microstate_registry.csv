@@ -1,0 +1,43 @@
+parameter_set,model_type,feature_id,layer,reducer,variable_key,resolved,interpretation
+Chen2020,DFN,neg_avg_sto,negative_solid,mean,Average negative particle stoichiometry,True,Average negative solid lithiation state
+Chen2020,DFN,neg_avg_surface_sto,negative_solid,mean,X-averaged negative particle surface stoichiometry,True,Average negative particle surface lithiation state
+Chen2020,DFN,neg_max_surface_sto,negative_solid,mean,Maximum negative particle surface stoichiometry,True,Maximum negative surface stoichiometry; saturation/plating-risk proxy
+Chen2020,DFN,neg_min_surface_sto,negative_solid,mean,Minimum negative particle surface stoichiometry,True,Minimum negative surface stoichiometry; spatial heterogeneity proxy
+Chen2020,DFN,pos_avg_sto,positive_solid,mean,Average positive particle stoichiometry,True,Average positive solid delithiation state
+Chen2020,DFN,pos_avg_surface_sto,positive_solid,mean,X-averaged positive particle surface stoichiometry,True,Average positive particle surface stoichiometry
+Chen2020,DFN,elyte_c_mean,electrolyte,mean,X-averaged electrolyte concentration [mol.m-3],True,Mean electrolyte concentration
+Chen2020,DFN,elyte_c_range,electrolyte,range,Electrolyte concentration [mol.m-3],True,Spatial electrolyte concentration gradient proxy
+Chen2020,DFN,eta_n_mean,kinetics,mean,X-averaged negative electrode reaction overpotential [V],True,Negative electrode reaction overpotential
+Chen2020,DFN,eta_p_mean,kinetics,mean,X-averaged positive electrode reaction overpotential [V],True,Positive electrode reaction overpotential
+Chen2020,DFN,j_n_rms,kinetics,rms_abs,X-averaged negative electrode interfacial current density [A.m-2],True,Negative electrode interfacial current density RMS
+Chen2020,DFN,j_p_rms,kinetics,rms_abs,X-averaged positive electrode interfacial current density [A.m-2],True,Positive electrode interfacial current density RMS
+Chen2020,DFN,cell_temperature_K,thermal,mean,X-averaged cell temperature [K],True,Cell temperature; isothermal models should remain constant
+Chen2020,DFN,total_heating_mean,thermal,mean,Volume-averaged total heating [W.m-3],True,Total heat generation proxy
+Chen2020,SPMe,neg_avg_sto,negative_solid,mean,Average negative particle stoichiometry,True,Average negative solid lithiation state
+Chen2020,SPMe,neg_avg_surface_sto,negative_solid,mean,X-averaged negative particle surface stoichiometry,True,Average negative particle surface lithiation state
+Chen2020,SPMe,neg_max_surface_sto,negative_solid,mean,Maximum negative particle surface stoichiometry,True,Maximum negative surface stoichiometry; saturation/plating-risk proxy
+Chen2020,SPMe,neg_min_surface_sto,negative_solid,mean,Minimum negative particle surface stoichiometry,True,Minimum negative surface stoichiometry; spatial heterogeneity proxy
+Chen2020,SPMe,pos_avg_sto,positive_solid,mean,Average positive particle stoichiometry,True,Average positive solid delithiation state
+Chen2020,SPMe,pos_avg_surface_sto,positive_solid,mean,X-averaged positive particle surface stoichiometry,True,Average positive particle surface stoichiometry
+Chen2020,SPMe,elyte_c_mean,electrolyte,mean,X-averaged electrolyte concentration [mol.m-3],True,Mean electrolyte concentration
+Chen2020,SPMe,elyte_c_range,electrolyte,range,Electrolyte concentration [mol.m-3],True,Spatial electrolyte concentration gradient proxy
+Chen2020,SPMe,eta_n_mean,kinetics,mean,X-averaged negative electrode reaction overpotential [V],True,Negative electrode reaction overpotential
+Chen2020,SPMe,eta_p_mean,kinetics,mean,X-averaged positive electrode reaction overpotential [V],True,Positive electrode reaction overpotential
+Chen2020,SPMe,j_n_rms,kinetics,rms_abs,X-averaged negative electrode interfacial current density [A.m-2],True,Negative electrode interfacial current density RMS
+Chen2020,SPMe,j_p_rms,kinetics,rms_abs,X-averaged positive electrode interfacial current density [A.m-2],True,Positive electrode interfacial current density RMS
+Chen2020,SPMe,cell_temperature_K,thermal,mean,X-averaged cell temperature [K],True,Cell temperature; isothermal models should remain constant
+Chen2020,SPMe,total_heating_mean,thermal,mean,Volume-averaged total heating [W.m-3],True,Total heat generation proxy
+Chen2020,SPM,neg_avg_sto,negative_solid,mean,Average negative particle stoichiometry,True,Average negative solid lithiation state
+Chen2020,SPM,neg_avg_surface_sto,negative_solid,mean,X-averaged negative particle surface stoichiometry,True,Average negative particle surface lithiation state
+Chen2020,SPM,neg_max_surface_sto,negative_solid,mean,Maximum negative particle surface stoichiometry,True,Maximum negative surface stoichiometry; saturation/plating-risk proxy
+Chen2020,SPM,neg_min_surface_sto,negative_solid,mean,Minimum negative particle surface stoichiometry,True,Minimum negative surface stoichiometry; spatial heterogeneity proxy
+Chen2020,SPM,pos_avg_sto,positive_solid,mean,Average positive particle stoichiometry,True,Average positive solid delithiation state
+Chen2020,SPM,pos_avg_surface_sto,positive_solid,mean,X-averaged positive particle surface stoichiometry,True,Average positive particle surface stoichiometry
+Chen2020,SPM,elyte_c_mean,electrolyte,mean,X-averaged electrolyte concentration [mol.m-3],True,Mean electrolyte concentration
+Chen2020,SPM,elyte_c_range,electrolyte,range,Electrolyte concentration [mol.m-3],True,Spatial electrolyte concentration gradient proxy
+Chen2020,SPM,eta_n_mean,kinetics,mean,X-averaged negative electrode reaction overpotential [V],True,Negative electrode reaction overpotential
+Chen2020,SPM,eta_p_mean,kinetics,mean,X-averaged positive electrode reaction overpotential [V],True,Positive electrode reaction overpotential
+Chen2020,SPM,j_n_rms,kinetics,rms_abs,X-averaged negative electrode interfacial current density [A.m-2],True,Negative electrode interfacial current density RMS
+Chen2020,SPM,j_p_rms,kinetics,rms_abs,X-averaged positive electrode interfacial current density [A.m-2],True,Positive electrode interfacial current density RMS
+Chen2020,SPM,cell_temperature_K,thermal,mean,X-averaged cell temperature [K],True,Cell temperature; isothermal models should remain constant
+Chen2020,SPM,total_heating_mean,thermal,mean,Volume-averaged total heating [W.m-3],True,Total heat generation proxy
