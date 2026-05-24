@@ -1,0 +1,5 @@
+parameter_set,model_type,condition,protocol_type,case_role,dc_c,ac_c,peak_c,frequency_mode,tau_factor_set,tau_ref_set_s,f_Hz,period_s,omega_tau_set
+Chen2020,DFN,Chen2020_DFN_Day33B_DC03,DC,dc_reference,0.3,0.0,0.3,set_rebased,,36.316532231592305,,,
+Chen2020,DFN,Chen2020_DFN_Day33B_DC03_AC0p7_stress,DCAC,stress_case,0.3,0.7,1.0,set_rebased,1.5,36.316532231592305,0.002921625190367048,342.27525258788194,0.6666666666666666
+Chen2020,DFN,Chen2020_DFN_Day33B_DC03_AC0p38_boundary,DCAC,near_hard_margin_boundary,0.3,0.38,0.6799999999999999,set_rebased,1.5,36.316532231592305,0.002921625190367048,342.27525258788194,0.6666666666666666
+Chen2020,DFN,Chen2020_DFN_Day33B_DC03_AC0p3_intermediate,DCAC,intermediate_reference,0.3,0.3,0.6,set_rebased,1.5,36.316532231592305,0.002921625190367048,342.27525258788194,0.6666666666666666

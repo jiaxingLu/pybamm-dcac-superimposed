@@ -1,0 +1,11 @@
+{
+  "notebook": "33_plating_risk_localization_map.ipynb",
+  "primary_parameter_set": "Chen2020",
+  "model_type": "DFN",
+  "frequency_mode": "set_rebased",
+  "tau_factor_main": 1.5,
+  "tau_ref_source": "Day17 tau2_biexp descriptor matrix",
+  "tau_ref_set_s": 36.316532231592305,
+  "f_main_Hz": 0.002921625190367048,
+  "lineage_note": "Day33 continues the Day30-Day32 set-rebased mainline. MJ1 fixed-label frequencies are excluded from the mainline."
+}
