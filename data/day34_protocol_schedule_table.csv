@@ -1,0 +1,5 @@
+condition,protocol_type,case_role,dc_c,schedule_type,fixed_ac_c,early_ac_c,mid_ac_c,late_ac_c,peak_c_nominal,tau_factor_set,f_Hz,period_s,schedule_note
+Chen2020_DFN_Day34_DC03,DC,dc_reference,0.3,constant,0.0,0.0,0.0,0.0,0.3,,,,pure DC reference
+Chen2020_DFN_Day34_fixed_AC0p38,DCAC,fixed_near_boundary_baseline,0.3,constant,0.38,0.38,0.38,0.38,0.6799999999999999,1.5,0.002921625190367048,342.27525258788194,fixed near-boundary amplitude from Day31-Day33
+Chen2020_DFN_Day34_fixed_AC0p7,DCAC,fixed_stress_baseline,0.3,constant,0.7,0.7,0.7,0.7,1.0,1.5,0.002921625190367048,342.27525258788194,fixed high-amplitude stress case
+Chen2020_DFN_Day34_sched_Qfrac_v1,DCAC_SCHEDULED,rule_based_state_aware_v1,0.3,qfrac_time_proxy,,0.38,0.2,0.0,0.6799999999999999,1.5,0.002921625190367048,342.27525258788194,0-75% Qref: AC0.38; 75-85% Qref: AC0.20; >85% Qref: AC off

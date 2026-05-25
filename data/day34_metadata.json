@@ -1,0 +1,11 @@
+{
+  "notebook": "34_state_aware_dcac_waveform_scheduling.ipynb",
+  "parameter_set": "Chen2020",
+  "model_type": "DFN",
+  "frequency_mode": "set_rebased",
+  "tau_factor_main": 1.5,
+  "tau_ref_set_s": 36.316532231592305,
+  "f_main_Hz": 0.002921625190367048,
+  "purpose": "rule-based state-aware DCAC scheduling baseline",
+  "not_mpc_or_bo": true
+}
