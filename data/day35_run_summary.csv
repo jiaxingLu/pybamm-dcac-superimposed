@@ -1,0 +1,9 @@
+policy_id,condition,case_role,status,termination,t_end_s,t_end_min,Q_end_Ah,V_end_V,I_charge_min_A,I_charge_max_A,AC_C_min,AC_C_max,error
+DC03,Chen2020_DFN_Day35_DC03,dc_reference,ok,event: Maximum voltage [V],10782.9096067284,179.71516011214,4.4928790028035,4.2,1.5,1.5,0.0,0.0,
+fixed_AC0p38,Chen2020_DFN_Day35_fixed_AC0p38,fixed_near_boundary_baseline,ok,event: Maximum voltage [V],9318.002844598159,155.30004740996932,3.9065085913724236,4.20000000000005,-0.39998718028576485,3.3999912821600367,0.38,0.38,
+fixed_AC0p7,Chen2020_DFN_Day35_fixed_AC0p7,fixed_stress_baseline,ok,event: Maximum voltage [V],8627.927468069152,143.79879113448587,3.633944665066004,4.200000000000195,-1.9999721485058215,4.999984249864502,0.7,0.7,
+sched_v1_day34,Chen2020_DFN_Day35_sched_v1_day34,scheduled_v1_day34_baseline,ok,event: Maximum voltage [V],10696.821272717205,178.28035454528674,4.4924891412062395,4.2,-0.39998718028576485,3.3999912821600367,0.0,0.38,
+sched_v2_conservative,Chen2020_DFN_Day35_sched_v2_conservative,scheduled_v2_conservative,ok,event: Maximum voltage [V],10767.715805648846,179.46193009414745,4.493120187304324,4.200000000000001,-0.39998718028576485,3.3999912821600367,0.0,0.38,
+sched_v3_early_derate,Chen2020_DFN_Day35_sched_v3_early_derate,scheduled_v3_early_derate,ok,event: Maximum voltage [V],10751.24228850557,179.18737147509282,4.492913292112714,4.2,-0.39998718028576485,3.3999912821600367,0.0,0.38,
+sched_v4_aggressive,Chen2020_DFN_Day35_sched_v4_aggressive,scheduled_v4_aggressive,ok,event: Maximum voltage [V],10698.658859216908,178.31098098694846,4.491694917563012,4.199999999999999,-0.39998718028576485,3.3999912821600367,0.0,0.38,
+sched_v5_low_stress,Chen2020_DFN_Day35_sched_v5_low_stress,scheduled_v5_low_stress,ok,event: Maximum voltage [V],10704.744895352946,178.4124149225491,4.492124685713132,4.2000000000000135,6.025548462832575e-06,2.999979942104556,0.0,0.3,
