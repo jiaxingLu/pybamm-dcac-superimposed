@@ -1,0 +1,9 @@
+policy_id,condition,protocol_type,case_role,schedule_type,dc_c,fixed_ac_c,early_ac_c,mid_ac_c,late_ac_c,qfrac_derate,qfrac_ac_off,tau_factor_set,f_Hz,period_s,policy_note,peak_c_nominal
+DC03,Chen2020_DFN_Day35_DC03,DC,dc_reference,constant,0.3,0.0,0.0,0.0,0.0,,,,,,pure DC reference,0.3
+fixed_AC0p38,Chen2020_DFN_Day35_fixed_AC0p38,DCAC,fixed_near_boundary_baseline,constant,0.3,0.38,0.38,0.38,0.38,,,1.5,0.002921625190367048,342.27525258788194,fixed near-boundary baseline,0.6799999999999999
+fixed_AC0p7,Chen2020_DFN_Day35_fixed_AC0p7,DCAC,fixed_stress_baseline,constant,0.3,0.7,0.7,0.7,0.7,,,1.5,0.002921625190367048,342.27525258788194,fixed high-amplitude stress baseline,1.0
+sched_v1_day34,Chen2020_DFN_Day35_sched_v1_day34,DCAC_SCHEDULED,scheduled_v1_day34_baseline,qfrac_time_proxy,0.3,,0.38,0.2,0.0,0.75,0.85,1.5,0.002921625190367048,342.27525258788194,Day34 scheduled baseline,0.6799999999999999
+sched_v2_conservative,Chen2020_DFN_Day35_sched_v2_conservative,DCAC_SCHEDULED,scheduled_v2_conservative,qfrac_time_proxy,0.3,,0.38,0.1,0.0,0.7,0.8,1.5,0.002921625190367048,342.27525258788194,earlier derating and earlier AC-off,0.6799999999999999
+sched_v3_early_derate,Chen2020_DFN_Day35_sched_v3_early_derate,DCAC_SCHEDULED,scheduled_v3_early_derate,qfrac_time_proxy,0.3,,0.38,0.2,0.0,0.7,0.85,1.5,0.002921625190367048,342.27525258788194,"early derating, same AC-off as v1",0.6799999999999999
+sched_v4_aggressive,Chen2020_DFN_Day35_sched_v4_aggressive,DCAC_SCHEDULED,scheduled_v4_aggressive,qfrac_time_proxy,0.3,,0.38,0.2,0.0,0.8,0.9,1.5,0.002921625190367048,342.27525258788194,later derating and later AC-off,0.6799999999999999
+sched_v5_low_stress,Chen2020_DFN_Day35_sched_v5_low_stress,DCAC_SCHEDULED,scheduled_v5_low_stress,qfrac_time_proxy,0.3,,0.3,0.1,0.0,0.75,0.85,1.5,0.002921625190367048,342.27525258788194,lower early and mid AC amplitude,0.6
