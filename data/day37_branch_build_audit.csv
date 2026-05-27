@@ -1,0 +1,8 @@
+branch_id,include_in_day37B,build_status,n_variables,missing_required_keys,error
+baseline_default,True,ok,515.0,,
+double_layer_differential,True,ok,522.0,,
+transport_flattened,True,ok,515.0,,
+transport_nonlinearity_amplified,True,ok,515.0,,
+combined_sensitivity,True,ok,522.0,,
+ocp_hysteresis_dynamic,False,not_included,,,
+sei_solvent_diffusion_limited,False,not_included,,,

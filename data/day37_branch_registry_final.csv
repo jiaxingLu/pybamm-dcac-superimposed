@@ -1,0 +1,8 @@
+branch_id,branch_type,surface_form,transport_branch_id,transport_modification,physical_status,include_in_day37B,interpretation_boundary
+baseline_default,baseline,false,baseline_default_transport,default,baseline,True,Reference branch.
+double_layer_differential,double_layer,differential,baseline_default_transport,default,pybamm_supported,True,Day36-supported differential surface-form branch.
+transport_flattened,transport_parameterization,false,transport_flattened,flattened,diagnostic_not_truth_model,True,One-factor diagnostic branch; removes concentration dependence around reference values.
+transport_nonlinearity_amplified,transport_parameterization,false,transport_nonlinearity_amplified,nonlinearity_amplified,diagnostic_stress_test_not_truth_model,True,One-factor diagnostic branch; amplifies concentration dependence.
+combined_sensitivity,combined,differential,transport_nonlinearity_amplified,nonlinearity_amplified,diagnostic_stress_test_not_truth_model,True,Combined diagnostic branch: differential surface form + amplified transport nonlinearity.
+ocp_hysteresis_dynamic,ocp_hysteresis,false,baseline_default_transport,default,deferred,False,Deferred: no supported PyBaMM option/model branch identified in Day37A.
+sei_solvent_diffusion_limited,side_reaction,false,baseline_default_transport,default,pybamm_supported_but_excluded_from_clean_matrix,False,"Builds, but it is a degradation side-reaction branch and would confound clean reversible non-geometric acceleration audit."

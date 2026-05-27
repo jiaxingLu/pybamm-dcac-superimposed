@@ -1,0 +1,17 @@
+{
+  "notebook": "37_mechanism_parameterization_sensitivity_matrix.ipynb",
+  "parameter_set": "Chen2020",
+  "model_type": "DFN",
+  "frequency_mode": "set_rebased",
+  "tau_factor_main": 1.5,
+  "tau_ref_set_s": 36.316532231592305,
+  "f_main_Hz": 0.002921625190367048,
+  "purpose": "mechanism and parameterization sensitivity matrix before non-geometric acceleration claim review",
+  "required_protocols": [
+    "DC03",
+    "fixed_AC0p38",
+    "fixed_AC0p7",
+    "sched_v2_conservative"
+  ],
+  "lineage": "Day37 follows Day30-Day36; Day36 closed double-layer surface-form sensitivity."
+}
