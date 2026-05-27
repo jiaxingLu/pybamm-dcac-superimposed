@@ -1,0 +1,4 @@
+variant_id,surface_form,build_status,n_variables,required_margin_keys_available,missing_margin_keys,error
+surface_form_false,false,ok,515,True,,
+surface_form_differential,differential,ok,522,True,,
+surface_form_algebraic,algebraic,ok,522,True,,

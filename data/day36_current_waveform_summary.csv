@@ -1,0 +1,13 @@
+variant_id,surface_form,protocol_id,condition,I_charge_min_A,I_charge_max_A,Q_geom_end_Ah,AC_C_min,AC_C_max
+surface_form_false,false,DC03,Chen2020_DFN_Day36_surface_form_false_DC03,1.5,1.5,5.0,0.0,0.0
+surface_form_false,false,fixed_AC0p38,Chen2020_DFN_Day36_surface_form_false_fixed_AC0p38,-0.39999997128705433,3.3999999998717176,5.001985944251486,0.38,0.38
+surface_form_false,false,fixed_AC0p7,Chen2020_DFN_Day36_surface_form_false_fixed_AC0p7,-1.999999947107732,4.99999999976369,5.031068751951366,0.7,0.7
+surface_form_false,false,sched_v2_conservative,Chen2020_DFN_Day36_surface_form_false_sched_v2_conservative,-0.39999997128705433,3.399999764100877,5.006583805248922,0.0,0.38
+surface_form_differential,differential,DC03,Chen2020_DFN_Day36_surface_form_differential_DC03,1.5,1.5,5.0,0.0,0.0
+surface_form_differential,differential,fixed_AC0p38,Chen2020_DFN_Day36_surface_form_differential_fixed_AC0p38,-0.39999997128705433,3.3999999998717176,5.001985944251486,0.38,0.38
+surface_form_differential,differential,fixed_AC0p7,Chen2020_DFN_Day36_surface_form_differential_fixed_AC0p7,-1.999999947107732,4.99999999976369,5.031068751951366,0.7,0.7
+surface_form_differential,differential,sched_v2_conservative,Chen2020_DFN_Day36_surface_form_differential_sched_v2_conservative,-0.39999997128705433,3.399999764100877,5.006583805248922,0.0,0.38
+surface_form_algebraic,algebraic,DC03,Chen2020_DFN_Day36_surface_form_algebraic_DC03,1.5,1.5,5.0,0.0,0.0
+surface_form_algebraic,algebraic,fixed_AC0p38,Chen2020_DFN_Day36_surface_form_algebraic_fixed_AC0p38,-0.39999997128705433,3.3999999998717176,5.001985944251486,0.38,0.38
+surface_form_algebraic,algebraic,fixed_AC0p7,Chen2020_DFN_Day36_surface_form_algebraic_fixed_AC0p7,-1.999999947107732,4.99999999976369,5.031068751951366,0.7,0.7
+surface_form_algebraic,algebraic,sched_v2_conservative,Chen2020_DFN_Day36_surface_form_algebraic_sched_v2_conservative,-0.39999997128705433,3.399999764100877,5.006583805248922,0.0,0.38

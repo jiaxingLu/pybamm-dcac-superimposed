@@ -1,0 +1,4 @@
+variant_id,surface_form,build_status,n_variables,required_margin_keys_available,negative_Cdl_available,positive_Cdl_available,negative_Cdl_value,positive_Cdl_value
+surface_form_false,false,ok,515,True,True,True,0.2,0.2
+surface_form_differential,differential,ok,522,True,True,True,0.2,0.2
+surface_form_algebraic,algebraic,ok,522,True,True,True,0.2,0.2
