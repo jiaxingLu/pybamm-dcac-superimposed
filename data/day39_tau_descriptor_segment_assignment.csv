@@ -1,0 +1,4 @@
+segment_id,qfrac_start,qfrac_end,segment_role,qfrac_mid,assigned_tau_qfrac_target,tau_fast_s,tau_slow_s,tau2_selected_s_from_Day39A,fit_R2,tau_valid_for_frequency,assignment_rule
+seg_low,0.0,0.4,early_high_AC_lowQ,0.2,0.2,26.698288971459878,282.546335289431,282.546335289431,0.9996383580867495,True,nearest fitted τ row to segment midpoint
+seg_mid,0.4,0.62,early_high_AC_midQ,0.51,0.6,27.13698321641905,306.3612313674457,306.3612313674457,0.9997156714835893,True,nearest fitted τ row to segment midpoint
+seg_derated,0.62,0.77,mid_low_AC_derated,0.6950000000000001,0.72,25.554477582753712,242.38364180259595,242.38364180259595,0.9996525209607002,True,nearest fitted τ row to segment midpoint
