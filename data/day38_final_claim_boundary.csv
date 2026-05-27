@@ -1,0 +1,7 @@
+claim,evidence,verdict,boundary
+BO-ready evaluator contract was established,"evaluate_policy_theta maps policy parameters to timing, U_NE, microstate, constraint, and score outputs.",supported,Evaluator uses Chen2020 / DFN / isothermal / fixed 1.5τ_set frequency.
+Fixed-frequency amplitude/window policy can outperform Day35 hand-designed v2/v3 seeds,local_H and local_C outperform Day35 seeds in strict-margin score.,supported,"Only local deterministic expansion, not full Bayesian optimization."
+local_H is the current primary fixed-frequency candidate,local_H has the highest strict-margin score with Δt_raw≈91 s and min U_NE≈37 mV.,supported_as_current_screen_result,"Needs robustness checks under transport sensitivity, thermal, aging, and cross-parameter transfer."
+Day38 proves global optimality,Only seed plus local deterministic expansion was run.,not_supported,A true BO loop or broader search is required.
+Day38 includes SOC-dependent tau-rebased frequency scheduling,Frequency remains fixed at 1.5τ_set throughout Day38.,not_supported,SOC-dependent τ₂-rebased frequency scheduling is deferred to Day39.
+Day38 implements MPC,All policies are open-loop prescribed-current schedules.,not_supported,MPC-ready formulation is deferred to later notebook.

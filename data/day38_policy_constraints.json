@@ -1,0 +1,8 @@
+{
+  "qfrac_ordering": "qfrac_derate + min_gap <= qfrac_ac_off",
+  "min_gap": 0.05,
+  "mid_ac_not_greater_than_early_ac": true,
+  "peak_current_soft_limit_c": 0.75,
+  "hard_margin_limit_mV": 0.0,
+  "buffer_margin_mV": 50.0
+}

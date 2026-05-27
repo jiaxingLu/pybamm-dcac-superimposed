@@ -1,0 +1,13 @@
+{
+  "notebook": "38_bo_ready_policy_optimization.ipynb",
+  "parameter_set": "Chen2020",
+  "model_type": "DFN",
+  "frequency_mode": "set_rebased",
+  "tau_factor_main": 1.5,
+  "tau_ref_set_s": 36.316532231592305,
+  "f_main_Hz": 0.002921625190367048,
+  "purpose": "define BO-ready state-aware DCAC policy evaluator",
+  "not_full_bo_yet": true,
+  "not_mpc": true,
+  "lineage": "Day38 follows Day37 claim review; focus shifts to admissible waveform optimization."
+}
