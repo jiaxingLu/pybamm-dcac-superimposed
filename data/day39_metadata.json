@@ -1,0 +1,21 @@
+{
+  "notebook": "39_soc_tau_frequency_scheduling.ipynb",
+  "parameter_set": "Chen2020",
+  "model_type": "DFN",
+  "thermal": "isothermal",
+  "frequency_mode": "soc_q_segment_tau2_rebased",
+  "initial_soc": 0.05,
+  "dc_c": 0.3,
+  "nominal_capacity_Ah": 5.0,
+  "I_DC_A": 1.5,
+  "local_H_policy": {
+    "policy_id": "local_H_high_early_early_off",
+    "early_ac_c": 0.38,
+    "mid_ac_c": 0.05,
+    "qfrac_derate": 0.62,
+    "qfrac_ac_off": 0.77,
+    "tau_factor_reference": 1.5
+  },
+  "critical_sign_rule": "project I_charge_A > 0 for charge; PyBaMM I_py_A = -I_charge_A",
+  "purpose": "extract parameter-set-specific \u03c42(Q) map before SOC/Q-segmented frequency scheduling"
+}

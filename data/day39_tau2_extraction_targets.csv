@@ -1,0 +1,6 @@
+parameter_set,model_type,thermal,qfrac_target,Q_target_Ah,precharge_s_at_0p3C,precharge_min_at_0p3C,segment_role_for_local_H,Q_ref_Ah,Q_ref_source
+Chen2020,DFN,isothermal,0.2,0.8985758005607001,2156.5819213456803,35.94303202242801,early_high_AC_region,4.4928790028035,/Users/louislu/pybamm-dcac-superimposed/data/day38_seed_run_summary.csv
+Chen2020,DFN,isothermal,0.4,1.7971516011214002,4313.1638426913605,71.88606404485601,early_high_AC_region,4.4928790028035,/Users/louislu/pybamm-dcac-superimposed/data/day38_seed_run_summary.csv
+Chen2020,DFN,isothermal,0.6,2.6957274016821,6469.74576403704,107.829096067284,early_high_AC_region,4.4928790028035,/Users/louislu/pybamm-dcac-superimposed/data/day38_seed_run_summary.csv
+Chen2020,DFN,isothermal,0.72,3.2348728820185197,7763.694916844447,129.39491528074078,mid_low_AC_region,4.4928790028035,/Users/louislu/pybamm-dcac-superimposed/data/day38_seed_run_summary.csv
+Chen2020,DFN,isothermal,0.85,3.8189471523829748,9165.473165719139,152.75788609531898,diagnostic_AC_off_region,4.4928790028035,/Users/louislu/pybamm-dcac-superimposed/data/day38_seed_run_summary.csv

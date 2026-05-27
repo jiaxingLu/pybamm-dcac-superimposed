@@ -1,0 +1,6 @@
+frequency_policy_id,amplitude_policy_id,frequency_mode,tau_descriptor,k_factor,purpose,dc_c,early_ac_c,mid_ac_c,qfrac_derate,qfrac_ac_off,sign_rule
+fixed_local_H,local_H,fixed_global_tau_ref,tau_ref_set_fallback,1.5,Day38 fixed-frequency baseline,0.3,0.38,0.05,0.62,0.77,I_py_A = -I_charge_A
+seg_tau_fast_k1p5,local_H,segmented_tau_rebased,tau_fast_s,1.5,main fast-descriptor candidate,0.3,0.38,0.05,0.62,0.77,I_py_A = -I_charge_A
+seg_tau_slow_k1p5,local_H,segmented_tau_rebased,tau_slow_s,1.5,slow-tail diagnostic,0.3,0.38,0.05,0.62,0.77,I_py_A = -I_charge_A
+seg_tau_fast_k1p0,local_H,segmented_tau_rebased,tau_fast_s,1.0,faster forcing based on fast descriptor,0.3,0.38,0.05,0.62,0.77,I_py_A = -I_charge_A
+seg_tau_fast_k3p0,local_H,segmented_tau_rebased,tau_fast_s,3.0,more conservative/slower forcing based on fast descriptor,0.3,0.38,0.05,0.62,0.77,I_py_A = -I_charge_A

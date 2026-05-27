@@ -1,0 +1,6 @@
+qfrac_target,precharge_I_charge_mean_A,precharge_I_py_mean_A,pulse_I_charge_mean_A,pulse_I_py_mean_A,precharge_sign_ok,pulse_sign_ok,t_total_s
+0.2,1.5,-1.5,1.5,-1.5,True,True,3386.5819213456803
+0.4,1.5,-1.5,1.5,-1.5,True,True,5543.1638426913605
+0.6,1.5,-1.5,1.5,-1.5,True,True,7699.74576403704
+0.72,1.5,-1.5,1.5,-1.5,True,True,8993.694916844448
+0.85,1.5,-1.5,1.5,-1.5,True,True,10395.473165719139

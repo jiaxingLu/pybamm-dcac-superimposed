@@ -1,0 +1,7 @@
+claim,evidence,verdict,boundary
+Parameter-set-specific τ2 map was extracted,"Chen2020 / DFN pulse-rest fits produced high-quality bi-exponential fits at qfrac 0.20, 0.40, 0.60, 0.72, and 0.85.",supported,τ descriptors are parameter-set-specific and should not be transferred to other cells or parameter sets without re-extraction.
+τ_fast and τ_slow are interchangeable frequency descriptors,τ_fast≈25–27 s and τ_slow≈242–306 s differ by nearly an order of magnitude; τ_slow has insufficient cycle coverage in key AC-on segments.,not_supported,τ_slow remains diagnostic; τ_fast is the viable periodic forcing descriptor in Day39.
+seg_tau_fast_k3p0 improves fixed_local_H under isothermal electrochemical-margin criteria,seg_tau_fast_k3p0 increases raw Δt by about 4.7 s relative to fixed_local_H while preserving min U_NE and usable cycle coverage.,supported_as_current_screen_result,Result is isothermal and not yet thermally or aging validated.
+seg_tau_slow_k1p5 is the best protocol because it has the largest raw gain,seg_tau_slow_k1p5 has insufficient cycle coverage and elevated microstate stress despite large raw gain.,rejected,"Slow-tail schedule is diagnostic only, not a periodic AC candidate."
+Day39 evaluates thermal admissibility,The model remains isothermal; no T_cell or heat generation metrics are evaluated.,not_supported,Thermal admissibility is deferred to Day40.
+Day39 implements MPC or feedback control,All frequency schedules are open-loop and based on DC-reference Q/time proxy.,not_supported,MPC-ready formulation remains deferred.
