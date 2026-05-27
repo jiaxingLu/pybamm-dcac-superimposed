@@ -1,0 +1,9 @@
+parameter_key,available,value_type,callable,value_repr
+Electrolyte diffusivity [m2.s-1],True,function,True,<function electrolyte_diffusivity_Nyman2008 at 0x116e37b00>
+Electrolyte conductivity [S.m-1],True,function,True,<function electrolyte_conductivity_Nyman2008 at 0x116e50400>
+Negative electrode OCP [V],True,function,True,<function graphite_LGM50_ocp_Chen2020 at 0x116dfaa20>
+Positive electrode OCP [V],True,function,True,<function nmc_LGM50_ocp_Chen2020 at 0x116e372e0>
+Negative electrode exchange-current density [A.m-2],True,function,True,<function graphite_LGM50_electrolyte_exchange_current_density_Chen2020 at 0x116dfbf60>
+Positive electrode exchange-current density [A.m-2],True,function,True,<function nmc_LGM50_electrolyte_exchange_current_density_Chen2020 at 0x116e37380>
+Negative electrode double-layer capacity [F.m-2],True,float,False,0.2
+Positive electrode double-layer capacity [F.m-2],True,float,False,0.2

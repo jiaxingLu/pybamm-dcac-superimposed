@@ -1,0 +1,7 @@
+branch_id,branch_type,options,transport_branch_id,runnable_status,physical_status,interpretation_boundary
+baseline_default,baseline,"{'thermal': 'isothermal', 'surface form': 'false'}",baseline_default_transport,planned,baseline,Reference branch for Day37.
+double_layer_differential,double_layer,"{'thermal': 'isothermal', 'surface form': 'differential'}",baseline_default_transport,ok,pybamm_supported,Day36-supported branch; used to keep double-layer sensitivity in matrix.
+transport_flattened,transport_parameterization,"{'thermal': 'isothermal', 'surface form': 'false'}",transport_flattened,planned_pending_implementation,diagnostic_not_truth_model,One-factor transport sensitivity branch.
+transport_nonlinearity_amplified,transport_parameterization,"{'thermal': 'isothermal', 'surface form': 'false'}",transport_nonlinearity_amplified,planned_pending_implementation,diagnostic_stress_test_not_truth_model,One-factor stress test for stronger concentration-dependent transport.
+ocp_hysteresis_dynamic,ocp_hysteresis,{'thermal': 'isothermal'},baseline_default_transport,deferred_pending_supported_option_identification,not_yet_supported_in_current_audit,No branch should be run until a valid PyBaMM option / model configuration is identified.
+combined_sensitivity,combined,"{'thermal': 'isothermal', 'surface form': 'differential'}",transport_nonlinearity_amplified,planned_after_individual_branches,diagnostic_stress_test_not_truth_model,Combined perturbation only after one-factor branches are audited.

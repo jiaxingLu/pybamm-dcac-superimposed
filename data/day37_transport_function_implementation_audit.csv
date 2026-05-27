@@ -1,0 +1,4 @@
+transport_branch_id,De_function,kappa_function,De_ref_at_1000_298K,kappa_ref_at_1000_298K,interpretation
+baseline_default_transport,Chen2020 default,Chen2020 default,1.7694000000000006e-10,0.9487000000000005,baseline
+transport_flattened,constant DE_REF,constant KAPPA_REF,1.7694000000000006e-10,0.9487000000000005,diagnostic flattening of concentration dependence
+transport_nonlinearity_amplified,default * (c_e/C_REF)^power,default * (c_e/C_REF)^power,1.7694000000000006e-10,0.9487000000000005,"diagnostic amplified concentration dependence, power=1.5"
