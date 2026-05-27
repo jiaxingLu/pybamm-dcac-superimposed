@@ -1,0 +1,8 @@
+policy_id,source,early_ac_c,mid_ac_c,qfrac_derate,qfrac_ac_off,note,feasible_parameter_space,feasibility_reason,dc_c,tau_factor_set,f_Hz,period_s,peak_c_nominal,schedule_type
+seed_sched_v2_conservative,Day35_primary_candidate,0.38,0.1,0.7,0.8,Day35 primary candidate,True,ok,0.3,1.5,0.002921625190367048,342.27525258788194,0.6799999999999999,qfrac_time_proxy
+seed_sched_v3_early_derate,Day35_balanced_candidate,0.38,0.2,0.7,0.85,Day35 balanced candidate,True,ok,0.3,1.5,0.002921625190367048,342.27525258788194,0.6799999999999999,qfrac_time_proxy
+seed_sched_v5_low_stress,Day35_low_stress_candidate,0.3,0.1,0.75,0.85,Day35 low-transport-stress candidate,True,ok,0.3,1.5,0.002921625190367048,342.27525258788194,0.6,qfrac_time_proxy
+seed_conservative_low_mid,Day38_seed,0.35,0.05,0.65,0.78,more conservative than v2,True,ok,0.3,1.5,0.002921625190367048,342.27525258788194,0.6499999999999999,qfrac_time_proxy
+seed_balanced_late_off,Day38_seed,0.35,0.15,0.7,0.88,moderate amplitude with later AC-off,True,ok,0.3,1.5,0.002921625190367048,342.27525258788194,0.6499999999999999,qfrac_time_proxy
+seed_aggressive_margin_test,Day38_seed,0.42,0.2,0.75,0.9,"aggressive margin test, not expected best",True,ok,0.3,1.5,0.002921625190367048,342.27525258788194,0.72,qfrac_time_proxy
+seed_low_amplitude_long_window,Day38_seed,0.25,0.1,0.8,0.93,lower amplitude but longer AC window,True,ok,0.3,1.5,0.002921625190367048,342.27525258788194,0.55,qfrac_time_proxy

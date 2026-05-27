@@ -1,0 +1,5 @@
+parameter,lower,upper,type,description
+early_ac_c,0.2,0.45,continuous,early-stage AC amplitude in C-rate
+mid_ac_c,0.0,0.25,continuous,mid-stage AC amplitude after derating in C-rate
+qfrac_derate,0.6,0.85,continuous,Q_ref fraction where AC derating begins
+qfrac_ac_off,0.75,0.95,continuous,Q_ref fraction where AC is switched off
