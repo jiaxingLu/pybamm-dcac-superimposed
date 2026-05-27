@@ -1,0 +1,28 @@
+{
+  "notebook": "36_double_layer_surface_form_sensitivity.ipynb",
+  "parameter_set": "Chen2020",
+  "model_type": "DFN",
+  "frequency_mode": "set_rebased",
+  "tau_factor_main": 1.5,
+  "tau_ref_set_s": 36.316532231592305,
+  "f_main_Hz": 0.002921625190367048,
+  "purpose": "double-layer surface-form sensitivity audit",
+  "surface_form_variants": [
+    {
+      "variant_id": "surface_form_false",
+      "surface_form": "false",
+      "interpretation": "baseline quasi-steady interfacial charge balance"
+    },
+    {
+      "variant_id": "surface_form_differential",
+      "surface_form": "differential",
+      "interpretation": "dynamic double-layer capacitance branch"
+    },
+    {
+      "variant_id": "surface_form_algebraic",
+      "surface_form": "algebraic",
+      "interpretation": "algebraic surface formulation diagnostic"
+    }
+  ],
+  "lineage": "Day36 tests missing interfacial double-layer dynamics after Day30-Day35."
+}
